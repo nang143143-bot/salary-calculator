@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Salary Calculator - Hun Samnang</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;700&family=Moul&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1e1e24; }
+        ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
+
+        body {
+            font-family: 'Kantumruy Pro', sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1560233026-ad254fa82fc8?q=80&w=2670&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .bg-overlay {
+            position: fixed; top: 0; left: 0; w-full; h-full;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.85));
+            z-index: -1;
+            width: 100%; height: 100%;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border-radius: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            border-color: rgba(212, 175, 55, 0.3); /* Gold border on hover */
+        }
+
+        /* Inputs */
+        .premium-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 12px 16px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .premium-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #d4af37; /* Gold */
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+        .premium-input::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+        /* Typography */
+        .font-moul { font-family: 'Moul', serif; }
+        .text-gold { color: #d4af37; }
+        .text-gold-light { color: #f3e5ab; }
+        
+        /* Custom Range Slider for Days/Hours (optional visual flair) */
+        label { font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 6px; display: block; }
+    </style>
+</head>
+<body class="antialiased selection:bg-yellow-500 selection:text-black">
+    
+    <div class="bg-overlay"></div>
+
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+        
+        <!-- HEADER -->
+        <header class="text-center mb-10 animate-fade-in-down">
+            <h1 class="text-3xl md:text-5xl font-moul text-gold mb-2 drop-shadow-lg leading-relaxed pt-4">
+                កម្មវិធីគណនាប្រាក់ខែ
+            </h1>
+            <div class="h-1 w-24 bg-gradient-to-r from-transparent via-yellow-500 to-transparent mx-auto rounded-full mb-3"></div>
+            <p class="text-gray-300 font-light tracking-wider">រចនាដោយភាពច្បាស់លាស់ និងទំនើបកម្ម</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- LEFT COLUMN: INPUTS (Span 8) -->
+            <div class="lg:col-span-8 space-y-6">
+                
+                <!-- SECTION 1: MAIN SALARY INFO -->
+                <div class="glass-panel p-6 md:p-8">
+                    <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                        <div class="p-2 rounded-lg bg-blue-500/20 text-blue-400">
+                            <i data-lucide="briefcase" class="w-6 h-6"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-white">ព័ត៌មានការងារ & ប្រាក់ខែ</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                        <div class="col-span-1 md:col-span-2">
+                            <label>ប្រាក់ខែគោល (Basic Salary)</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gold">$</span>
+                                <input type="number" id="basicSalary" class="premium-input pl-8 text-gold font-bold text-lg" placeholder="0.00" oninput="calc()">
+                            </div>
+                        </div>
+                        <div>
+                            <label>ថ្ងៃស្តង់ដារ/ខែ</label>
+                            <input type="number" id="stdDays" value="26" class="premium-input text-center" oninput="calc()">
+                        </div>
+                        <div>
+                            <label>ម៉ោងការងារ/ថ្ងៃ</label>
+                            <input type="number" id="hoursPerDay" value="8" class="premium-input text-center text-blue-300 font-bold" oninput="calc()">
+                        </div>
+                    </div>
+                    
+                    <div class="mt-5 pt-5 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-white/5 rounded-xl p-3 text-center border border-white/5">
+                            <p class="text-xs text-gray-400 uppercase tracking-wide">តម្លៃ ១ ម៉ោង (100%)</p>
+                            <p id="rate100" class="text-lg font-bold text-white mt-1">0.00 $</p>
+                        </div>
+                        <div class="bg-white/5 rounded-xl p-3 text-center border border-white/5">
+                            <p class="text-xs text-gold uppercase tracking-wide">តម្លៃ ១ ម៉ោង (150%)</p>
+                            <p id="rate150" class="text-lg font-bold text-gold mt-1">0.00 $</p>
+                        </div>
+                        <div class="bg-white/5 rounded-xl p-3 text-center border border-white/5">
+                            <p class="text-xs text-purple-400 uppercase tracking-wide">តម្លៃ ១ ម៉ោង (200%)</p>
+                            <p id="rate200" class="text-lg font-bold text-purple-400 mt-1">0.00 $</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 2: ATTENDANCE & OT -->
+                <div class="glass-panel p-6 md:p-8">
+                    <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                        <div class="p-2 rounded-lg bg-green-500/20 text-green-400">
+                            <i data-lucide="clock" class="w-6 h-6"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-white">វត្តមាន & ថែមម៉ោង (OT)</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+                        <div>
+                            <label class="text-green-400 font-bold">ថ្ងៃមកធ្វើការជាក់ស្តែង</label>
+                            <input type="number" id="actDays" value="26" class="premium-input border-green-500/30 focus:border-green-500" oninput="calc()">
+                        </div>
+                        <div>
+                            <label>OT 150% (ម៉ោង)</label>
+                            <input type="number" id="ot150" placeholder="0" class="premium-input" oninput="calc()">
+                            <div id="totalOt150" class="text-right text-xs text-gold mt-1 h-4"></div>
+                        </div>
+                        <div>
+                            <label>OT 200% (ម៉ោង)</label>
+                            <input type="number" id="ot200" placeholder="0" class="premium-input" oninput="calc()">
+                            <div id="totalOt200" class="text-right text-xs text-purple-400 mt-1 h-4"></div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-5">
+                        <div>
+                            <label>ថ្លៃបាយ ($)</label>
+                            <input type="number" id="food" placeholder="0" class="premium-input" oninput="calc()">
+                        </div>
+                        <div>
+                            <label>លើកទឹកចិត្ត ($)</label>
+                            <input type="number" id="incentive" placeholder="0" class="premium-input" oninput="calc()">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 3: EXPENSES -->
+                <div class="glass-panel p-6 md:p-8">
+                    <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                        <div class="p-2 rounded-lg bg-red-500/20 text-red-400">
+                            <i data-lucide="wallet" class="w-6 h-6"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-white">ការចំណាយប្រចាំខែ</h2>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div><label>សងគេ</label><input type="number" id="debt" class="premium-input" oninput="calc()"></div>
+                        <div><label>ថ្លៃសាំង</label><input type="number" id="gas" class="premium-input" oninput="calc()"></div>
+                        <div><label>ផ្ទះជួល</label><input type="number" id="rent" class="premium-input" oninput="calc()"></div>
+                        <div><label>Skin Care</label><input type="number" id="skincare" class="premium-input" oninput="calc()"></div>
+                        <div><label>Internet</label><input type="number" id="internet" class="premium-input" oninput="calc()"></div>
+                        <div><label>សម្លៀកបំពាក់</label><input type="number" id="clothing" class="premium-input" oninput="calc()"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: SUMMARY (Span 4) -->
+            <div class="lg:col-span-4">
+                <div class="glass-panel p-6 sticky top-6 border-t-4 border-t-yellow-500">
+                    <h2 class="text-xl font-moul text-center text-white mb-6">លទ្ធផលសង្ខេប</h2>
+
+                    <!-- Summary Items -->
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center py-2 border-b border-white/5">
+                            <span class="text-gray-300 text-sm">ប្រាក់ខែ (Pro-rated)</span>
+                            <span id="sumSalary" class="font-bold text-white">0.00 $</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-white/5">
+                            <span class="text-gold-light text-sm">ប្រាក់ OT សរុប</span>
+                            <span id="sumOT" class="font-bold text-gold">0.00 $</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-white/5">
+                            <span class="text-gray-300 text-sm">ប្រាក់ឧបត្ថម្ភ</span>
+                            <span id="sumAllowance" class="font-bold text-white">0.00 $</span>
+                        </div>
+                        
+                        <div class="bg-green-500/10 p-4 rounded-xl border border-green-500/20 mt-4">
+                            <div class="flex justify-between items-end">
+                                <span class="text-green-400 text-sm font-bold uppercase">ចំណូលសរុប</span>
+                                <span id="totalIncome" class="text-2xl font-bold text-green-400">0.00 $</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-red-500/10 p-4 rounded-xl border border-red-500/20">
+                            <div class="flex justify-between items-end">
+                                <span class="text-red-400 text-sm font-bold uppercase">ចំណាយសរុប</span>
+                                <span id="totalExpense" class="text-xl font-bold text-red-400">0.00 $</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="my-8 relative">
+                        <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/10"></div></div>
+                        <div class="relative flex justify-center text-sm"><span class="px-2 bg-[#2d2d30] text-gray-500 rounded-full border border-white/10">Net Balance</span></div>
+                    </div>
+
+                    <div class="text-center">
+                        <p class="text-gray-400 text-sm mb-2">ទឹកប្រាក់នៅសល់ក្នុងដៃ</p>
+                        <div id="netBalance" class="text-4xl md:text-5xl font-bold text-gold drop-shadow-[0_0_10px_rgba(212,175,55,0.5)] transition-all duration-300">
+                            0.00 $
+                        </div>
+                    </div>
+
+                    <button onclick="clearAll()" class="w-full mt-8 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold transition flex items-center justify-center gap-2 group border border-white/10">
+                        <i data-lucide="rotate-ccw" class="w-4 h-4 group-hover:rotate-180 transition-transform duration-500"></i>
+                        សម្អាតទិន្នន័យ
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="mt-16 text-center border-t border-white/10 pt-8 pb-4">
+            <p class="text-white text-lg flex items-center justify-center gap-2">
+                បង្កើតឡើងដោយ 
+                <span class="font-moul text-gold text-xl drop-shadow-md">ហ៊ុន សំណាង</span>
+            </p>
+            <div class="flex justify-center gap-4 mt-4 opacity-50">
+                <i data-lucide="facebook" class="w-5 h-5 hover:text-blue-500 cursor-pointer transition"></i>
+                <i data-lucide="instagram" class="w-5 h-5 hover:text-pink-500 cursor-pointer transition"></i>
+                <i data-lucide="globe" class="w-5 h-5 hover:text-green-500 cursor-pointer transition"></i>
+            </div>
+            <p class="text-xs text-gray-500 mt-4">© 2024 Angkor Salary Calculator. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function getVal(id) { return parseFloat(document.getElementById(id).value) || 0; }
+        function setTxt(id, val) { document.getElementById(id).innerText = val.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' $'; }
+
+        function calc() {
+            // Inputs
+            const salary = getVal('basicSalary');
+            const stdDays = getVal('stdDays') || 26;
+            const hoursPerDay = getVal('hoursPerDay') || 8;
+            const actDays = getVal('actDays');
+
+            // Rate Logic
+            let dailyRate = 0;
+            let hourlyRate = 0;
+            if (stdDays > 0) {
+                dailyRate = salary / stdDays;
+                if (hoursPerDay > 0) {
+                    hourlyRate = dailyRate / hoursPerDay;
+                }
+            }
+            const rate150 = hourlyRate * 1.5;
+            const rate200 = hourlyRate * 2.0;
+
+            // Update Rate Display
+            setTxt('rate100', hourlyRate);
+            setTxt('rate150', rate150);
+            setTxt('rate200', rate200);
+
+            // Earnings
+            const proratedSalary = dailyRate * actDays;
+            const ot150Earned = getVal('ot150') * rate150;
+            const ot200Earned = getVal('ot200') * rate200;
+            const allowances = getVal('food') + getVal('incentive');
+
+            // Small text under inputs
+            if(getVal('ot150') > 0) document.getElementById('totalOt150').innerText = '+' + ot150Earned.toFixed(2) + '$';
+            else document.getElementById('totalOt150').innerText = '';
+            
+            if(getVal('ot200') > 0) document.getElementById('totalOt200').innerText = '+' + ot200Earned.toFixed(2) + '$';
+            else document.getElementById('totalOt200').innerText = '';
+
+            // Totals
+            const totalIncome = proratedSalary + ot150Earned + ot200Earned + allowances;
+            const expenses = getVal('debt') + getVal('gas') + getVal('rent') + 
+                             getVal('skincare') + getVal('internet') + getVal('clothing');
+            const net = totalIncome - expenses;
+
+            // Summary UI
+            setTxt('sumSalary', proratedSalary);
+            setTxt('sumOT', ot150Earned + ot200Earned);
+            setTxt('sumAllowance', allowances);
+            setTxt('totalIncome', totalIncome);
+            setTxt('totalExpense', expenses);
+            
+            const netEl = document.getElementById('netBalance');
+            netEl.innerText = net.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' $';
+
+            if(net < 0) {
+                netEl.classList.remove('text-gold');
+                netEl.classList.add('text-red-500');
+            } else {
+                netEl.classList.remove('text-red-500');
+                netEl.classList.add('text-gold');
+            }
+        }
+
+        function clearAll() {
+            document.querySelectorAll('input').forEach(input => {
+                if(input.id === 'stdDays') input.value = 26;
+                else if(input.id === 'hoursPerDay') input.value = 8;
+                else if(input.id === 'actDays') input.value = 26;
+                else input.value = '';
+            });
+            document.getElementById('totalOt150').innerText = '';
+            document.getElementById('totalOt200').innerText = '';
+            calc();
+        }
+    </script>
+</body>
+</html>
