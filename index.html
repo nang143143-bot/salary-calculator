@@ -69,6 +69,7 @@
             font-family: 'Dangrek', cursive;
             letter-spacing: 0.5px;
         }
+        /* Override font for non-Khmer headers */
         body.lang-en h1, body.lang-en h2, body.lang-en h3, body.lang-en .font-header,
         body.lang-vi h1, body.lang-vi h2, body.lang-vi h3, body.lang-vi .font-header {
             font-family: 'Poppins', sans-serif;
@@ -157,6 +158,8 @@
                     <i data-lucide="download" class="w-5 h-5"></i>
                 </button>
                 
+                <!-- REMOVED FOOTER TOGGLE BUTTON -->
+
                 <button id="theme-toggle" class="p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all">
                     <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
                     <i data-lucide="sun" class="w-5 h-5 hidden dark:block text-yellow-300"></i>
@@ -276,7 +279,7 @@
                 </div>
             </section>
 
-            <!-- EXPENSE (RESTORED EYE ICON) -->
+            <!-- EXPENSE -->
             <section class="glass-card p-6 rounded-3xl shadow-sm border-t-4 border-santaRed h-full flex flex-col">
                 <div class="flex justify-between items-center mb-4 border-b border-red-50 dark:border-red-900/30 pb-4">
                     <h2 class="text-xl font-bold text-santaRed dark:text-red-400 flex items-center gap-3 font-header">
@@ -285,13 +288,12 @@
                         </div>
                         <span data-i18n="expenseTitle">ចំណាយ (Expenses)</span>
                     </h2>
-                    <!-- EXPENSE TOGGLE BUTTON (RESTORED) -->
                     <button id="btn-expense-toggle" onclick="toggleExpensesList()" class="p-2 rounded-full hover:bg-red-50 dark:hover:bg-red-900/20 text-santaRed dark:text-red-400 transition-all active:scale-95">
-                        <i data-lucide="eye" class="w-5 h-5"></i>
+                        <!-- Icon set by JS -->
                     </button>
                 </div>
                 
-                <div id="expenses-content" class="visible-content flex-1">
+                <div id="expenses-content" class="hidden-content flex-1">
                     <div id="expenses-container" class="space-y-3 font-sans pt-2">
                         <!-- JS will insert rows here -->
                     </div>
@@ -397,7 +399,7 @@
                     </div>
 
                     <div class="text-center mt-6">
-                        <p class="text-[10px] text-gray-400">Create by <span id="report-creator-name">ហ៊ុន សំណាង</span></p>
+                        <p class="text-[10px] text-gray-400">Create by ហ៊ុន សំណាង</p>
                         <p class="text-[10px] text-gray-400">Merry Christmas 🎄</p>
                     </div>
                 </div>
@@ -673,14 +675,10 @@
                 document.body.classList.add('lang-vi');
             }
 
-            // Update Creator Name
+            // Update Creator Name Correctly (Updated to ហ៊ន សំណាង)
             const creatorNameEl = document.getElementById('creator-name');
             if (creatorNameEl) {
                 creatorNameEl.innerText = currentLang === 'km' ? 'ហ៊ន សំណាង' : 'HUN SAMNANG';
-            }
-            const reportCreatorEl = document.getElementById('report-creator-name');
-            if (reportCreatorEl) {
-                reportCreatorEl.innerText = currentLang === 'km' ? 'ហ៊ន សំណាង' : 'HUN SAMNANG';
             }
 
             // Update all static text
@@ -816,6 +814,10 @@
             localStorage.theme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
         });
 
+        function toggleFooter() {
+            // REMOVED THIS FUNCTIONALITY AS BUTTON WAS REMOVED
+        }
+
         function toggleExpensesList() {
             const content = document.getElementById('expenses-content');
             const btn = document.getElementById('btn-expense-toggle');
@@ -860,9 +862,8 @@
             // Expenses: Collapsed by default (Eye Off)
             const expContent = document.getElementById('expenses-content');
             const expBtn = document.getElementById('btn-expense-toggle');
-            // EXPENSES VISIBLE BY DEFAULT
-            expContent.classList.add('visible-content'); 
-            expBtn.innerHTML = '<i data-lucide="eye" class="w-5 h-5"></i>';
+            expContent.classList.add('hidden-content'); 
+            expBtn.innerHTML = '<i data-lucide="eye-off" class="w-5 h-5"></i>';
 
             // OT List: Visible by default (Eye On)
             const otContent = document.getElementById('ot-list-content');
@@ -889,6 +890,7 @@
             let tableHours150 = 0;
             let tableHours200 = 0;
             const rows = document.querySelectorAll('#otTableBody tr');
+            const hasTableRows = rows.length > 0;
             rows.forEach(row => {
                 const start = row.querySelector('.start-time').value;
                 const end = row.querySelector('.end-time').value;
