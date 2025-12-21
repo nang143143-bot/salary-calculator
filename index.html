@@ -2,8 +2,9 @@
 <html lang="km">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christmas Salary Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Khmer Salary Calculator</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Dangrek&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -22,22 +23,13 @@
                         header: ['"Dangrek"', '"Poppins"', 'cursive'],
                     },
                     colors: {
-                        santaRed: '#D42426',
-                        pineGreen: '#165B33',
-                        snowWhite: '#F8B229',
-                        hollyGreen: '#146B3A',
-                        gold: '#F8B229',
+                        khmerBlue: '#032EA1',
+                        khmerRed: '#E00025',
+                        khmerGold: '#FFB600',
                         darkNight: '#0f172a',
-                        cozyDark: '#1e293b',
-                        neonGreen: '#4ade80',
-                    },
-                    backgroundImage: {
-                        'candy-cane': "repeating-linear-gradient(45deg, #D42426, #D42426 10px, #ffffff 10px, #ffffff 20px)",
                     },
                     animation: {
                         'float': 'float 3s ease-in-out infinite',
-                        'spin-slow': 'spin 8s linear infinite',
-                        'bounce-slow': 'bounce 2s infinite',
                     },
                     keyframes: {
                         float: {
@@ -52,53 +44,86 @@
     <style>
         body {
             font-family: 'Battambang', sans-serif;
-            background-color: #f1f5f9;
             overflow-x: hidden;
         }
         body.lang-en, body.lang-vi {
             font-family: 'Poppins', sans-serif;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
+
+        /* --- KRAMA PATTERN --- */
+        .bg-krama {
+            background-color: #f8fafc;
+            background-image: 
+                linear-gradient(90deg, rgba(200, 0, 0, 0.03) 50%, transparent 50%),
+                linear-gradient(rgba(200, 0, 0, 0.03) 50%, transparent 50%);
+            background-size: 20px 20px;
         }
-        .dark .glass-card {
-            background: rgba(30, 41, 59, 0.9);
+        .dark .bg-krama {
+            background-color: #0f172a;
+            background-image: 
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 50%, transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 50%, transparent 50%);
         }
+
+        /* --- KRAMA STRIP --- */
+        .krama-strip {
+            height: 6px;
+            width: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                #E00025,
+                #E00025 10px,
+                #ffffff 10px,
+                #ffffff 20px,
+                #032EA1 20px,
+                #032EA1 30px,
+                #ffffff 30px,
+                #ffffff 40px
+            );
+        }
+
+        /* --- CARD STYLE --- */
+        .khmer-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-radius: 1rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+        .dark .khmer-card {
+            background: rgba(30, 41, 59, 0.95);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
         h1, h2, h3, .font-header {
             font-family: 'Dangrek', cursive;
             letter-spacing: 0.5px;
         }
-        /* Override font for non-Khmer headers */
-        body.lang-en h1, body.lang-en h2, body.lang-en h3, body.lang-en .font-header,
-        body.lang-vi h1, body.lang-vi h2, body.lang-vi h3, body.lang-vi .font-header {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
+
+        /* --- GOLDEN PARTICLES --- */
+        #particles-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0; overflow: hidden;
+        }
+        .gold-particle {
+            position: absolute; top: -10px;
+            background: linear-gradient(135deg, #FFD700, #FFF8DC);
+            border-radius: 50%; box-shadow: 0 0 4px #FFD700;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
 
-        .snowflake {
-            position: fixed;
-            top: -10px;
-            color: white;
-            user-select: none;
-            z-index: 9999;
-            pointer-events: none;
-            animation-name: fall;
-            animation-timing-function: linear;
-            text-shadow: 0 0 5px rgba(255,255,255,0.8);
-        }
-        .dark .snowflake { color: #e2e8f0; }
-        @keyframes fall { to { transform: translateY(105vh); } }
-        
-        /* Animations */
-        #grandTotalBar, #expenses-content, #ot-list-content {
+        /* --- EXPENSE TOGGLE ANIMATION --- */
+        #expenses-content {
             transition: all 0.3s ease-in-out;
             overflow: hidden;
-        }
-        .hidden-bar {
-            transform: translateY(150%);
-            opacity: 0;
-            pointer-events: none;
         }
         .hidden-content {
             max-height: 0 !important;
@@ -107,137 +132,120 @@
             pointer-events: none;
         }
         .visible-content {
-            max-height: 2000px;
+            max-height: 1000px; /* Large enough to fit content */
             opacity: 1;
+            margin-top: 1rem;
         }
         
-        /* Receipt Style */
+        /* Receipt Pattern */
         .receipt-zigzag {
-            background: linear-gradient(-45deg, transparent 16px, #f8fafc 0), linear-gradient(45deg, transparent 16px, #f8fafc 0);
+            background: linear-gradient(-45deg, transparent 16px, #F8FAFC 0), linear-gradient(45deg, transparent 16px, #F8FAFC 0);
             background-repeat: repeat-x;
             background-position: left bottom;
             background-size: 22px 32px;
-            content: "";
-            display: block;
-            width: 100%;
-            height: 32px;
-            position: relative;
-            top: 0px;
-            left: 0px;
-        }
-        .dark .receipt-zigzag {
-            background: linear-gradient(-45deg, transparent 16px, #1e293b 0), linear-gradient(45deg, transparent 16px, #1e293b 0);
-            background-repeat: repeat-x;
-            background-position: left bottom;
-            background-size: 22px 32px;
+            content: ""; display: block; width: 100%; height: 32px; position: relative; top: 0px; left: 0px;
         }
     </style>
 </head>
-<body class="bg-blue-50 dark:bg-darkNight text-gray-800 dark:text-gray-100 min-h-screen transition-colors duration-500 relative">
+<body class="bg-krama text-gray-800 dark:text-gray-100 min-h-screen transition-colors duration-500 relative flex flex-col">
+
+    <div id="particles-container"></div>
 
     <!-- Navbar -->
-    <nav class="sticky top-0 z-40 bg-santaRed dark:bg-pineGreen shadow-xl border-b-4 border-gold">
-        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+    <nav class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm border-b border-gray-200 dark:border-gray-800">
+        <div class="krama-strip absolute top-0 left-0"></div>
+        <div class="max-w-4xl mx-auto px-4 py-3 mt-1 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="bg-white p-1.5 rounded-full shadow-lg animate-float">
-                    <i data-lucide="gift" class="w-6 h-6 text-santaRed"></i>
+                <div class="bg-khmerBlue p-2 rounded-lg shadow-md animate-float">
+                    <i data-lucide="calculator" class="w-6 h-6 text-white"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl md:text-2xl text-white pt-1 drop-shadow-md tracking-wide" data-i18n="appTitle">គណនាប្រាក់ខែ</h1>
-                    <p class="text-[10px] text-yellow-100 -mt-0.5 opacity-90 font-medium font-sans">Merry Christmas Edition 🎄</p>
+                    <h1 class="text-xl md:text-2xl text-khmerBlue dark:text-khmerGold pt-1 tracking-wide" data-i18n="appTitle">គណនាប្រាក់ខែ</h1>
+                    <p class="text-[10px] text-gray-500 dark:text-gray-400 -mt-0.5 font-medium font-sans">Smart Calculator</p>
                 </div>
             </div>
             <div class="flex items-center gap-2">
-                <!-- Language -->
-                <button onclick="toggleLanguage()" class="min-w-[35px] px-2 py-1 rounded-lg bg-white/20 hover:bg-white/30 text-white text-xs font-bold transition-all border border-white/30">
+                <button onclick="toggleLanguage()" class="min-w-[35px] px-2 py-1 rounded-lg bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 text-khmerBlue dark:text-khmerGold text-xs font-bold transition-all border border-gray-200 dark:border-slate-700">
                     <span id="lang-label">KH</span>
                 </button>
-
-                <!-- DOWNLOAD BUTTON -->
-                <button onclick="openDownloadModal()" class="p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all active:scale-95" title="Download Report">
+                <button onclick="openDownloadModal()" class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 text-khmerBlue dark:text-khmerGold transition-all active:scale-95" title="Download Report">
                     <i data-lucide="download" class="w-5 h-5"></i>
                 </button>
-                
-                <!-- REMOVED FOOTER TOGGLE BUTTON -->
-
-                <button id="theme-toggle" class="p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all">
+                <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 text-khmerBlue dark:text-khmerGold transition-all">
                     <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
                     <i data-lucide="sun" class="w-5 h-5 hidden dark:block text-yellow-300"></i>
-                </button>
-                
-                <button onclick="toggleModal('ot-modal')" class="flex items-center gap-2 px-3 py-2 rounded-full bg-white text-santaRed dark:text-pineGreen font-bold shadow-lg hover:scale-105 transition active:scale-95 group">
-                    <i data-lucide="list-todo" class="w-5 h-5"></i>
-                    <span class="hidden md:block text-xs font-sans" data-i18n="otTableBtn">តារាង OT</span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto p-4 md:p-6 space-y-6 relative z-10 pb-40">
+    <main class="max-w-4xl mx-auto p-4 md:p-6 space-y-6 flex-grow pb-32 relative z-10">
+        
         <!-- SETUP SECTION -->
-        <section class="glass-card p-6 rounded-3xl shadow-sm border-2 border-dashed border-red-200 dark:border-green-900 relative">
-            <div class="absolute -top-3 -left-3 bg-white dark:bg-darkNight p-1 rounded-full border border-red-100 dark:border-green-900">
-                <i data-lucide="snowflake" class="w-8 h-8 text-blue-200 dark:text-blue-900 animate-spin-slow"></i>
-            </div>
-            <h2 class="text-xl font-bold mb-6 text-santaRed dark:text-green-400 flex items-center gap-2 font-header">
-                <i data-lucide="settings-2" class="w-6 h-6"></i>
-                <span data-i18n="settingsTitle">ការកំណត់ប្រាក់ខែគោល</span>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                <div class="relative group">
-                    <label class="block text-xs font-bold uppercase text-pineGreen dark:text-green-200 mb-1.5 font-sans" data-i18n="baseSalary">ប្រាក់ខែគោល ($)</label>
-                    <input type="number" id="baseSalary" value="500" class="w-full p-4 bg-red-50 dark:bg-slate-800/80 border-2 border-red-100 dark:border-green-800 rounded-2xl focus:ring-4 focus:ring-red-200 focus:border-santaRed outline-none font-bold text-xl text-santaRed dark:text-red-300 transition-all shadow-inner font-sans" oninput="calculateAll()">
+        <section class="khmer-card">
+            <div class="krama-strip"></div>
+            <div class="p-6">
+                <h2 class="text-xl font-bold mb-6 text-khmerBlue dark:text-blue-400 flex items-center gap-2 font-header">
+                    <i data-lucide="settings-2" class="w-6 h-6 text-khmerGold"></i>
+                    <span data-i18n="settingsTitle">ការកំណត់ប្រាក់ខែគោល</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="relative group">
+                        <label class="block text-xs font-bold uppercase text-gray-500 dark:text-gray-400 mb-1.5 font-sans" data-i18n="baseSalary">ប្រាក់ខែគោល ($)</label>
+                        <input type="number" id="baseSalary" value="500" class="w-full p-4 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-khmerBlue focus:border-khmerBlue outline-none font-bold text-xl text-khmerBlue dark:text-white transition-all font-sans text-center" oninput="calculateAll()">
+                    </div>
+                    <div class="relative group">
+                        <label class="block text-xs font-bold uppercase text-gray-500 dark:text-gray-400 mb-1.5 font-sans" data-i18n="workDays">ថ្ងៃធ្វើការ/ខែ</label>
+                        <input type="number" id="workDays" value="26" class="w-full p-4 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-khmerBlue focus:border-khmerBlue outline-none text-lg font-sans text-center" oninput="calculateAll()">
+                    </div>
+                    <div class="relative group">
+                        <label class="block text-xs font-bold uppercase text-gray-500 dark:text-gray-400 mb-1.5 font-sans" data-i18n="workHours">ម៉ោងធ្វើការ/ថ្ងៃ</label>
+                        <input type="number" id="workHours" value="8" class="w-full p-4 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-khmerBlue focus:border-khmerBlue outline-none text-lg font-sans text-center" oninput="calculateAll()">
+                    </div>
                 </div>
-                <div class="relative group">
-                    <label class="block text-xs font-bold uppercase text-pineGreen dark:text-green-200 mb-1.5 font-sans" data-i18n="workDays">ថ្ងៃធ្វើការ/ខែ</label>
-                    <input type="number" id="workDays" value="26" class="w-full p-4 bg-green-50 dark:bg-slate-800/80 border-2 border-green-100 dark:border-green-800 rounded-2xl focus:ring-4 focus:ring-green-200 focus:border-pineGreen outline-none text-lg shadow-inner font-sans" oninput="calculateAll()">
-                </div>
-                <div class="relative group">
-                    <label class="block text-xs font-bold uppercase text-pineGreen dark:text-green-200 mb-1.5 font-sans" data-i18n="workHours">ម៉ោងធ្វើការ/ថ្ងៃ</label>
-                    <input type="number" id="workHours" value="8" class="w-full p-4 bg-green-50 dark:bg-slate-800/80 border-2 border-green-100 dark:border-green-800 rounded-2xl focus:ring-4 focus:ring-green-200 focus:border-pineGreen outline-none text-lg shadow-inner font-sans" oninput="calculateAll()">
-                </div>
-            </div>
-            <div class="grid grid-cols-3 gap-4 font-sans">
-                <div class="bg-gray-100 dark:bg-slate-800 rounded-full py-2 px-4 text-center border-b-4 border-gray-300 dark:border-gray-700">
-                    <p class="text-[10px] text-gray-500 font-bold" data-i18n="rate1h">1 ម៉ោង</p>
-                    <p id="rate100" class="text-base font-bold text-gray-700 dark:text-gray-300">0.00</p>
-                </div>
-                <div class="bg-blue-100 dark:bg-blue-900/30 rounded-full py-2 px-4 text-center border-b-4 border-blue-300 dark:border-blue-800">
-                    <p class="text-[10px] text-blue-600 dark:text-blue-300 font-bold">150% (OT)</p>
-                    <p id="rate150" class="text-base font-bold text-blue-700 dark:text-blue-200">0.00</p>
-                </div>
-                <div class="bg-purple-100 dark:bg-purple-900/30 rounded-full py-2 px-4 text-center border-b-4 border-purple-300 dark:border-purple-800">
-                    <p class="text-[10px] text-purple-600 dark:text-purple-300 font-bold">200% (OT)</p>
-                    <p id="rate200" class="text-base font-bold text-purple-700 dark:text-purple-200">0.00</p>
+                <div class="grid grid-cols-3 gap-4 font-sans text-sm">
+                    <div class="bg-gray-100 dark:bg-slate-800 rounded-lg py-2 px-3 text-center border-l-4 border-gray-400 shadow-sm">
+                        <p class="text-[10px] text-gray-500 font-bold uppercase" data-i18n="rate1h">1 ម៉ោង</p>
+                        <p id="rate100" class="text-base font-bold text-gray-700 dark:text-gray-300">0.00</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg py-2 px-3 text-center border-l-4 border-khmerBlue shadow-sm">
+                        <p class="text-[10px] text-khmerBlue dark:text-blue-300 font-bold uppercase">150% (OT)</p>
+                        <p id="rate150" class="text-base font-bold text-khmerBlue dark:text-blue-200">0.00</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg py-2 px-3 text-center border-l-4 border-khmerRed shadow-sm">
+                        <p class="text-[10px] text-khmerRed dark:text-red-300 font-bold uppercase">200% (OT)</p>
+                        <p id="rate200" class="text-base font-bold text-khmerRed dark:text-red-200">0.00</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- MANUAL OT INPUTS -->
-        <section class="glass-card p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700">
-            <h2 class="text-xl font-bold mb-4 text-gray-700 dark:text-gray-200 flex items-center gap-2 font-header">
-                <span class="w-3 h-3 bg-gold rounded-full animate-pulse"></span>
-                <span data-i18n="totalOtTitle">សរុបម៉ោង OT</span>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="relative">
-                    <label class="block text-sm font-medium text-gray-500 mb-2 font-sans" data-i18n="ot150">OT 150% (ម៉ោង)</label>
-                    <div class="relative group">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <span class="text-blue-500 font-bold text-xs">1.5x</span>
+        <section class="khmer-card">
+            <div class="krama-strip"></div>
+            <div class="p-6">
+                <h2 class="text-xl font-bold mb-4 text-gray-700 dark:text-white flex items-center gap-2 font-header">
+                    <div class="w-2 h-6 bg-khmerGold rounded-full shadow-md"></div>
+                    <span data-i18n="totalOtTitle">សរុបម៉ោង OT</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="relative">
+                        <label class="block text-sm font-bold text-gray-500 dark:text-gray-400 mb-2 font-sans" data-i18n="ot150">OT 150% (ម៉ោង)</label>
+                        <div class="relative group">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <span class="bg-blue-100 text-khmerBlue text-[10px] font-bold px-1.5 py-0.5 rounded border border-blue-200">1.5x</span>
+                            </div>
+                            <input type="number" id="manualHours150" placeholder="0" class="w-full pl-14 p-4 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xl font-bold focus:ring-2 focus:ring-khmerBlue outline-none text-khmerBlue dark:text-blue-300 transition font-sans" oninput="calculateAll(true)">
                         </div>
-                        <input type="number" id="manualHours150" placeholder="0" class="w-full pl-10 p-4 bg-white dark:bg-slate-800 border-2 border-blue-100 dark:border-gray-600 rounded-2xl text-xl font-bold focus:ring-4 focus:ring-blue-100 focus:border-blue-400 outline-none text-blue-600 dark:text-blue-300 transition font-sans" oninput="calculateAll(true)">
-                        <i data-lucide="snowflake" class="absolute right-3 top-4 w-5 h-5 text-blue-200 opacity-50"></i>
                     </div>
-                </div>
-                <div class="relative">
-                    <label class="block text-sm font-medium text-gray-500 mb-2 font-sans" data-i18n="ot200">OT 200% (ម៉ោង)</label>
-                    <div class="relative group">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <span class="text-purple-500 font-bold text-xs">2.0x</span>
+                    <div class="relative">
+                        <label class="block text-sm font-bold text-gray-500 dark:text-gray-400 mb-2 font-sans" data-i18n="ot200">OT 200% (ម៉ោង)</label>
+                        <div class="relative group">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <span class="bg-red-100 text-khmerRed text-[10px] font-bold px-1.5 py-0.5 rounded border border-red-200">2.0x</span>
+                            </div>
+                            <input type="number" id="manualHours200" placeholder="0" class="w-full pl-14 p-4 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xl font-bold focus:ring-2 focus:ring-khmerRed outline-none text-khmerRed dark:text-red-300 transition font-sans" oninput="calculateAll(true)">
                         </div>
-                        <input type="number" id="manualHours200" placeholder="0" class="w-full pl-10 p-4 bg-white dark:bg-slate-800 border-2 border-purple-100 dark:border-gray-600 rounded-2xl text-xl font-bold focus:ring-4 focus:ring-purple-100 focus:border-purple-400 outline-none text-purple-600 dark:text-purple-300 transition font-sans" oninput="calculateAll(true)">
-                        <i data-lucide="star" class="absolute right-3 top-4 w-5 h-5 text-purple-200 opacity-50"></i>
                     </div>
                 </div>
             </div>
@@ -246,50 +254,52 @@
         <!-- INCOME & EXPENSE -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <!-- INCOME -->
-            <section class="glass-card p-6 rounded-3xl shadow-sm border-t-4 border-pineGreen h-full">
-                <h2 class="text-xl font-bold mb-6 text-pineGreen dark:text-green-400 flex items-center gap-3 pb-4 border-b border-green-50 dark:border-green-900/30 font-header">
-                    <div class="bg-green-100 dark:bg-green-900 p-2 rounded-lg">
-                        <i data-lucide="banknote" class="w-5 h-5 text-pineGreen dark:text-green-300"></i>
+            <section class="khmer-card p-6 border-l-4 border-l-green-500">
+                <h2 class="text-xl font-bold mb-6 text-green-700 dark:text-green-400 flex items-center gap-3 pb-4 border-b border-dashed border-slate-200 dark:border-slate-700 font-header">
+                    <div class="bg-green-100 dark:bg-green-900 p-2 rounded-lg shadow-sm">
+                        <i data-lucide="banknote" class="w-5 h-5 text-green-700 dark:text-green-300"></i>
                     </div>
                     <span data-i18n="incomeTitle">ចំណូល (Income)</span>
                 </h2>
                 <div class="space-y-4 font-sans">
-                    <div class="flex justify-between items-center py-2 px-3 bg-green-50 dark:bg-green-900/10 rounded-xl">
-                        <span class="text-gray-600 dark:text-gray-300 text-sm font-medium" data-i18n="baseSalary">ប្រាក់ខែគោល</span>
+                    <div class="flex justify-between items-center py-3 px-4 bg-green-50 dark:bg-green-900/10 rounded-xl border border-green-100 dark:border-green-800">
+                        <span class="text-gray-600 dark:text-gray-300 text-sm font-bold" data-i18n="baseSalary">ប្រាក់ខែគោល</span>
                         <span id="displayBaseSalary" class="font-bold text-gray-800 dark:text-white">$0.00</span>
                     </div>
-                    <div class="flex justify-between items-center py-2 px-3 bg-blue-50 dark:bg-blue-900/10 rounded-xl">
-                        <span class="text-blue-700 dark:text-blue-300 text-sm font-medium" data-i18n="totalOtMoney">ប្រាក់ OT សរុប</span>
-                        <span id="displayTotalOT" class="font-bold text-blue-700 dark:text-blue-300">$0.00</span>
+                    <div class="flex justify-between items-center py-3 px-4 bg-blue-50 dark:bg-blue-900/10 rounded-xl border border-blue-100 dark:border-blue-800">
+                        <span class="text-khmerBlue dark:text-blue-300 text-sm font-bold" data-i18n="totalOtMoney">ប្រាក់ OT សរុប</span>
+                        <span id="displayTotalOT" class="font-bold text-khmerBlue dark:text-blue-300">$0.00</span>
                     </div>
                     <div class="space-y-3 pt-2">
                         <div class="flex items-center justify-between">
-                            <label class="text-sm text-gray-600 dark:text-gray-400" data-i18n="foodAllowance">ថ្លៃបាយ</label>
-                            <input type="number" class="income-input w-32 p-2 bg-white dark:bg-slate-900 border border-green-100 dark:border-gray-700 rounded-lg text-right focus:border-pineGreen outline-none transition" placeholder="0" oninput="calculateAll(true)">
+                            <label class="text-sm font-bold text-gray-500 dark:text-gray-400" data-i18n="foodAllowance">ថ្លៃបាយ</label>
+                            <input type="number" class="income-input w-32 p-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-right focus:border-green-500 outline-none transition font-bold" placeholder="0" oninput="calculateAll(true)">
                         </div>
                         <div class="flex items-center justify-between">
-                            <label class="text-sm text-gray-600 dark:text-gray-400" data-i18n="bonus">លើកទឹកចិត្ត (Bonus)</label>
-                            <input type="number" class="income-input w-32 p-2 bg-white dark:bg-slate-900 border border-green-100 dark:border-gray-700 rounded-lg text-right focus:border-pineGreen outline-none transition" placeholder="0" oninput="calculateAll(true)">
+                            <label class="text-sm font-bold text-gray-500 dark:text-gray-400" data-i18n="bonus">លើកទឹកចិត្ត (Bonus)</label>
+                            <input type="number" class="income-input w-32 p-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-right focus:border-green-500 outline-none transition font-bold" placeholder="0" oninput="calculateAll(true)">
                         </div>
                     </div>
                 </div>
-                <div class="mt-8 pt-4 border-t-2 border-dashed border-green-100 dark:border-green-900 flex justify-between items-baseline font-sans">
-                    <span class="font-medium text-gray-500 uppercase text-xs tracking-wider" data-i18n="totalIncome">សរុបចំណូល</span>
-                    <span id="totalIncome" class="text-2xl font-bold text-pineGreen dark:text-green-400">$0.00</span>
+                <div class="mt-8 pt-4 border-t border-slate-100 dark:border-slate-700 flex justify-between items-baseline font-sans">
+                    <span class="font-bold text-gray-400 uppercase text-xs tracking-wider" data-i18n="totalIncome">សរុបចំណូល</span>
+                    <span id="totalIncome" class="text-2xl font-bold text-green-600 dark:text-green-400 drop-shadow-sm">$0.00</span>
                 </div>
             </section>
 
-            <!-- EXPENSE -->
-            <section class="glass-card p-6 rounded-3xl shadow-sm border-t-4 border-santaRed h-full flex flex-col">
-                <div class="flex justify-between items-center mb-4 border-b border-red-50 dark:border-red-900/30 pb-4">
-                    <h2 class="text-xl font-bold text-santaRed dark:text-red-400 flex items-center gap-3 font-header">
-                        <div class="bg-red-100 dark:bg-red-900 p-2 rounded-lg">
-                            <i data-lucide="receipt" class="w-5 h-5 text-santaRed dark:text-red-300"></i>
+            <!-- EXPENSE WITH EYE TOGGLE -->
+            <section class="khmer-card p-6 border-l-4 border-l-khmerRed flex flex-col">
+                <div class="flex justify-between items-center mb-4 border-b border-dashed border-slate-200 dark:border-slate-700 pb-4">
+                    <h2 class="text-xl font-bold text-khmerRed dark:text-red-400 flex items-center gap-3 font-header">
+                        <div class="bg-red-100 dark:bg-red-900 p-2 rounded-lg shadow-sm">
+                            <i data-lucide="receipt" class="w-5 h-5 text-khmerRed dark:text-red-300"></i>
                         </div>
                         <span data-i18n="expenseTitle">ចំណាយ (Expenses)</span>
                     </h2>
-                    <button id="btn-expense-toggle" onclick="toggleExpensesList()" class="p-2 rounded-full hover:bg-red-50 dark:hover:bg-red-900/20 text-santaRed dark:text-red-400 transition-all active:scale-95">
-                        <!-- Icon set by JS -->
+                    
+                    <!-- EYE TOGGLE BUTTON -->
+                    <button id="btn-expense-toggle" onclick="toggleExpensesList()" class="p-2 rounded-full hover:bg-red-50 dark:hover:bg-red-900/20 text-khmerRed dark:text-red-400 transition-all active:scale-95 shadow-sm border border-red-100 dark:border-red-900/50">
+                        <i data-lucide="eye-off" class="w-5 h-5"></i>
                     </button>
                 </div>
                 
@@ -297,64 +307,65 @@
                     <div id="expenses-container" class="space-y-3 font-sans pt-2">
                         <!-- JS will insert rows here -->
                     </div>
-                    <button onclick="addNewExpense()" class="mt-4 w-full py-2 rounded-xl border-2 border-dashed border-red-300 dark:border-red-800 text-red-500 dark:text-red-400 text-sm font-bold hover:bg-red-50 dark:hover:bg-red-900/20 transition flex items-center justify-center gap-2">
+                    <button onclick="addNewExpense()" class="mt-4 w-full py-2.5 rounded-xl border border-dashed border-red-300 dark:border-red-800 text-khmerRed dark:text-red-400 text-sm font-bold hover:bg-red-50 dark:hover:bg-red-900/20 transition flex items-center justify-center gap-2 bg-white dark:bg-transparent shadow-sm">
                         <i data-lucide="plus" class="w-4 h-4"></i> <span data-i18n="addExpense">បន្ថែមចំណាយថ្មី</span>
                     </button>
                 </div>
                 
-                <div class="mt-auto pt-4 border-t-2 border-dashed border-red-100 dark:border-red-900 flex justify-between items-baseline font-sans">
-                    <span class="font-medium text-gray-500 uppercase text-xs tracking-wider" data-i18n="totalExpense">សរុបចំណាយ</span>
-                    <span id="totalExpense" class="text-2xl font-bold text-santaRed dark:text-red-400">$0.00</span>
+                <div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-700 flex justify-between items-baseline font-sans">
+                    <span class="font-bold text-gray-400 uppercase text-xs tracking-wider" data-i18n="totalExpense">សរុបចំណាយ</span>
+                    <span id="totalExpense" class="text-2xl font-bold text-khmerRed dark:text-red-400 drop-shadow-sm">$0.00</span>
                 </div>
             </section>
         </div>
 
-        <!-- FOOTER -->
-        <footer class="text-center py-8 mt-6 flex flex-col items-center gap-6">
+        <!-- FOOTER INFO -->
+        <footer class="text-center py-4 flex flex-col items-center gap-6 mb-20 relative z-20">
              <!-- Created By -->
-             <div class="relative inline-flex items-center gap-3 px-8 py-2.5 rounded-full border border-slate-600 dark:border-slate-700 bg-slate-800/90 dark:bg-slate-900/90 shadow-lg backdrop-blur-md">
-                 <span class="text-gray-400 font-sans text-sm" data-i18n="createdBy">បង្កើតដោយ</span>
-                 <span id="creator-name" class="text-neonGreen font-header tracking-wide text-xl">ហ៊ុន សំណាង</span>
-                 <span class="text-red-500 text-lg animate-pulse">❤️</span>
+             <div class="flex items-center gap-2 text-gray-400 text-xs font-sans bg-white/60 dark:bg-slate-800/60 px-4 py-1.5 rounded-full border border-gray-200 dark:border-slate-700 backdrop-blur-sm shadow-sm">
+                 <span data-i18n="createdBy">បង្កើតដោយ</span>
+                 <span id="creator-name" class="font-bold text-khmerBlue dark:text-khmerGold">ហ៊ុន សំណាង</span>
              </div>
              
              <!-- Donate Button -->
-             <button onclick="toggleModal('donate-modal')" class="relative inline-flex items-center gap-3 px-10 py-3 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 active:scale-95 group overflow-hidden">
-                 <div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent z-10"></div>
-                 <i data-lucide="qr-code" class="w-6 h-6 text-white z-20"></i>
-                 <span class="text-white font-bold text-lg font-sans tracking-wide z-20" data-i18n="donateBtn">Donate Admin</span>
-                 <span class="text-2xl z-20">☕</span>
+             <button onclick="toggleModal('donate-modal')" class="relative inline-flex items-center gap-3 px-8 py-3 rounded-xl bg-gradient-to-r from-khmerGold to-orange-500 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 hover:-translate-y-1 transition-all duration-300 active:scale-95 group border border-white/20">
+                 <div class="bg-white/20 p-1.5 rounded-lg backdrop-blur-sm">
+                    <i data-lucide="coffee" class="w-5 h-5 text-white"></i>
+                 </div>
+                 <span class="text-white font-bold text-base font-sans tracking-wide" data-i18n="donateBtn">Donate Admin</span>
              </button>
 
              <!-- Social -->
-             <div class="flex gap-6 items-center justify-center mt-2 mb-10">
-                 <a href="https://t.me/hunsamnang" target="_blank" class="text-gray-400 hover:text-[#24A1DE] transition-colors transform hover:scale-110 duration-200">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+             <div class="flex gap-6 items-center justify-center">
+                 <a href="https://t.me/hunsamnang" target="_blank" class="text-gray-400 hover:text-[#24A1DE] transition-colors bg-white dark:bg-slate-800 p-2.5 rounded-full shadow-sm hover:shadow-md hover:-translate-y-1">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
                  </a>
-                 <a href="https://wa.me/qr/H35HQISESRRLB1" target="_blank" class="text-gray-400 hover:text-[#25D366] transition-colors transform hover:scale-110 duration-200">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone-call"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/><path d="M14.05 2a9 9 0 0 1 8 7.94"/><path d="M14.05 6A5 5 0 0 1 18 10"/></svg>
+                 <a href="https://wa.me/qr/H35HQISESRRLB1" target="_blank" class="text-gray-400 hover:text-[#25D366] transition-colors bg-white dark:bg-slate-800 p-2.5 rounded-full shadow-sm hover:shadow-md hover:-translate-y-1">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone-call"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/><path d="M14.05 2a9 9 0 0 1 8 7.94"/><path d="M14.05 6A5 5 0 0 1 18 10"/></svg>
                  </a>
-                 <a href="https://www.facebook.com/share/1PWhx9BWRR/?mibextid=wwXIfr" target="_blank" class="text-gray-400 hover:text-[#1877F2] transition-colors transform hover:scale-110 duration-200">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                 <a href="https://www.facebook.com/share/1PWhx9BWRR/?mibextid=wwXIfr" target="_blank" class="text-gray-400 hover:text-[#1877F2] transition-colors bg-white dark:bg-slate-800 p-2.5 rounded-full shadow-sm hover:shadow-md hover:-translate-y-1">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                  </a>
              </div>
         </footer>
 
-        <!-- GRAND TOTAL -->
-        <div id="grandTotalBar" class="sticky bottom-4 z-40">
-            <section class="relative bg-gradient-to-r from-santaRed to-red-700 dark:from-pineGreen dark:to-green-900 text-white p-5 rounded-3xl shadow-2xl flex items-center justify-between overflow-hidden border-2 border-white/20">
-                <div class="absolute top-0 right-10 w-12 h-full bg-gold/30 skew-x-12"></div>
-                <div class="absolute top-0 right-14 w-2 h-full bg-gold/50 skew-x-12"></div>
+        <!-- GRAND TOTAL FLOATING BAR -->
+        <div id="grandTotalBar" class="fixed bottom-4 left-0 right-0 z-40 px-4">
+            <section class="max-w-4xl mx-auto relative bg-khmerBlue dark:bg-slate-800 text-white p-4 rounded-2xl shadow-2xl flex items-center justify-between overflow-hidden border border-white/20 backdrop-blur-xl group">
+                <!-- Decoration -->
+                <div class="absolute top-0 right-0 h-full w-24 bg-khmerGold/10 -skew-x-12 transform translate-x-8"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite]"></div>
+                
                 <div class="relative z-10 flex items-center gap-3">
-                    <div class="bg-white/20 p-2 rounded-full hidden sm:block">
-                        <i data-lucide="gift" class="w-6 h-6 text-white"></i>
+                    <div class="bg-white/10 p-2 rounded-lg hidden sm:block backdrop-blur-sm border border-white/10">
+                        <i data-lucide="wallet" class="w-6 h-6 text-khmerGold"></i>
                     </div>
                     <div>
-                        <h3 class="text-yellow-100 text-xs md:text-sm font-medium mb-0.5 font-header" data-i18n="balanceTitle">ប្រាក់ខែនៅសល់ (Balance)</h3>
-                        <p class="text-[10px] text-white/80 font-sans" data-i18n="balanceSub">សរុបទុកក្នុងកូនជ្រូក 🐖</p>
+                        <h3 class="text-gray-200 text-xs font-bold uppercase tracking-wider mb-0.5 font-sans" data-i18n="balanceTitle">ប្រាក់ខែនៅសល់ (Balance)</h3>
+                        <p class="text-[10px] text-white/60 font-sans" data-i18n="balanceSub">សរុបទុកក្នុងកូនជ្រូក 🐖</p>
                     </div>
                 </div>
-                <h1 id="grandTotal" class="relative z-10 text-3xl md:text-5xl font-bold tracking-tight text-white font-mono drop-shadow-md">$0.00</h1>
+                <h1 id="grandTotal" class="relative z-10 text-3xl font-bold tracking-tight text-white font-mono drop-shadow-md">$0.00</h1>
             </section>
         </div>
     </main>
@@ -363,52 +374,54 @@
     <div id="download-modal" class="fixed inset-0 z-50 hidden modal-overlay" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="fixed inset-0 bg-darkNight/80 backdrop-blur-sm transition-opacity" onclick="toggleModal('download-modal')"></div>
         <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
-            <div class="relative transform overflow-hidden rounded-3xl bg-white dark:bg-darkCard text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-md modal-enter border-4 border-santaRed dark:border-green-800">
-                <div class="absolute top-0 left-0 w-full h-2 bg-candy-cane"></div>
+            <div class="relative transform overflow-hidden rounded-2xl bg-white dark:bg-darkCard text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-md modal-enter border-4 border-khmerBlue">
+                <!-- Krama Strip on Modal -->
+                <div class="krama-strip absolute top-0 left-0"></div>
                 
-                <div id="report-capture-area" class="bg-slate-50 dark:bg-slate-900 p-6 font-sans relative">
+                <!-- Report Preview -->
+                <div id="report-capture-area" class="bg-white p-8 font-sans relative text-stone-800">
                     <div class="receipt-zigzag absolute top-0 left-0 w-full"></div>
                     
-                    <div class="text-center mb-6 mt-2">
-                        <div class="mx-auto w-12 h-12 bg-santaRed rounded-full flex items-center justify-center mb-2 shadow-lg">
-                            <i data-lucide="gift" class="w-6 h-6 text-white"></i>
+                    <div class="text-center mb-6 mt-4">
+                        <div class="mx-auto w-12 h-12 bg-khmerBlue rounded-full flex items-center justify-center mb-2 shadow-lg">
+                            <i data-lucide="calculator" class="w-6 h-6 text-white"></i>
                         </div>
-                        <h3 class="text-xl font-header text-gray-800 dark:text-white" data-i18n="appTitle">Salary Calculator</h3>
-                        <p class="text-xs text-gray-500 dark:text-gray-400" id="report-date">Date: --/--/----</p>
+                        <h3 class="text-xl font-header text-khmerBlue" data-i18n="appTitle">Salary Calculator</h3>
+                        <p class="text-xs text-gray-500" id="report-date">Date: --/--/----</p>
                     </div>
 
-                    <div class="space-y-3 border-t border-dashed border-gray-300 dark:border-gray-700 pt-4">
+                    <div class="space-y-3 border-t border-dashed border-gray-300 pt-4">
                         <div class="flex justify-between text-sm">
-                            <span class="text-gray-600 dark:text-gray-400" data-i18n="incomeTitle">Income</span>
+                            <span class="text-gray-600" data-i18n="incomeTitle">Income</span>
                             <span class="font-bold text-green-600" id="report-income">$0.00</span>
                         </div>
                         <div class="flex justify-between text-sm">
-                            <span class="text-gray-600 dark:text-gray-400" data-i18n="expenseTitle">Expenses</span>
+                            <span class="text-gray-600" data-i18n="expenseTitle">Expenses</span>
                             <span class="font-bold text-red-500" id="report-expense">$0.00</span>
                         </div>
                     </div>
 
-                    <div class="my-4 border-t border-dashed border-gray-300 dark:border-gray-700"></div>
+                    <div class="my-4 border-t border-dashed border-gray-300"></div>
 
-                    <div id="report-expense-list" class="space-y-1 mb-4 text-xs text-gray-500 dark:text-gray-400">
+                    <div id="report-expense-list" class="space-y-1 mb-4 text-xs text-gray-500">
                     </div>
 
-                    <div class="bg-gray-200 dark:bg-slate-800 p-3 rounded-lg flex justify-between items-center">
-                        <span class="font-header text-gray-800 dark:text-white" data-i18n="balanceTitle">Balance</span>
-                        <span class="font-bold text-xl text-santaRed" id="report-balance">$0.00</span>
+                    <div class="bg-khmerBlue text-white p-4 rounded-xl flex justify-between items-center shadow-lg">
+                        <span class="font-bold text-sm" data-i18n="balanceTitle">NET BALANCE</span>
+                        <span class="font-bold text-2xl" id="report-balance">$0.00</span>
                     </div>
 
-                    <div class="text-center mt-6">
-                        <p class="text-[10px] text-gray-400">Create by ហ៊ុន សំណាង</p>
-                        <p class="text-[10px] text-gray-400">Merry Christmas 🎄</p>
+                    <div class="text-center mt-6 pt-4 border-t border-gray-100">
+                        <p class="text-[10px] text-gray-400">Created by <span class="text-khmerBlue font-bold">ហ៊ុន សំណាង</span></p>
                     </div>
                 </div>
 
-                <div class="bg-white dark:bg-darkCard px-4 py-3 sm:px-6 flex gap-3 justify-center">
-                    <button onclick="downloadImage()" class="flex-1 inline-flex justify-center items-center gap-2 rounded-xl bg-green-600 hover:bg-green-700 text-white px-4 py-2 text-sm font-bold shadow-sm transition-all">
+                <!-- Actions -->
+                <div class="bg-gray-50 dark:bg-slate-700/50 px-4 py-3 sm:px-6 flex gap-3 justify-center">
+                    <button onclick="downloadImage()" class="flex-1 inline-flex justify-center items-center gap-2 rounded-xl bg-khmerBlue hover:bg-blue-800 text-white px-4 py-2 text-sm font-bold shadow-sm transition-all">
                         <i data-lucide="download" class="w-4 h-4"></i> <span data-i18n="downloadBtn">Download Image</span>
                     </button>
-                    <button onclick="toggleModal('download-modal')" class="flex-1 inline-flex justify-center items-center gap-2 rounded-xl bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600 text-gray-800 dark:text-white px-4 py-2 text-sm font-bold shadow-sm transition-all" data-i18n="btnClose">
+                    <button onclick="toggleModal('download-modal')" class="flex-1 inline-flex justify-center items-center gap-2 rounded-xl bg-white border border-gray-300 hover:bg-gray-100 text-gray-700 px-4 py-2 text-sm font-bold shadow-sm transition-all" data-i18n="btnClose">
                         Close
                     </button>
                 </div>
@@ -416,89 +429,36 @@
         </div>
     </div>
 
-    <!-- OT MODAL -->
-    <div id="ot-modal" class="fixed inset-0 z-50 hidden modal-overlay" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="fixed inset-0 bg-darkNight/80 backdrop-blur-sm transition-opacity" onclick="toggleModal('ot-modal')"></div>
-        <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
-            <div class="relative transform overflow-hidden rounded-3xl bg-white dark:bg-darkCard text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-3xl modal-enter border-4 border-santaRed dark:border-green-800">
-                <div class="absolute top-0 left-0 w-full h-2 bg-candy-cane"></div>
-                
-                <div class="bg-white dark:bg-darkCard px-4 pb-4 pt-6 sm:p-6 sm:pb-4 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
-                    <h3 class="text-xl font-bold leading-6 text-santaRed dark:text-white flex items-center gap-2 font-header">
-                        <i data-lucide="scroll" class="w-6 h-6 text-gold"></i>
-                        <span data-i18n="otModalTitle">តារាងកត់ម៉ោង</span>
-                        <button id="btn-ot-toggle" onclick="toggleOTList()" class="ml-2 p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-500 dark:text-gray-400 transition-all active:scale-95">
-                            <i data-lucide="eye" class="w-5 h-5"></i>
-                        </button>
-                    </h3>
-                    <button onclick="toggleModal('ot-modal')" class="text-gray-400 hover:text-red-500 transition bg-red-50 dark:bg-slate-800 p-2 rounded-full">
-                        <i data-lucide="x" class="w-5 h-5"></i>
-                    </button>
-                </div>
-
-                <div class="px-4 py-4 sm:p-6 max-h-[60vh] overflow-y-auto">
-                    <div id="ot-list-content" class="visible-content">
-                        <div class="overflow-x-auto rounded-xl border-2 border-gray-100 dark:border-slate-700 mb-4">
-                            <table class="w-full text-sm text-left font-sans">
-                                <thead class="bg-red-50 dark:bg-slate-800 text-santaRed dark:text-red-300 font-bold">
-                                    <tr>
-                                        <th class="p-3 whitespace-nowrap" data-i18n="thDate">កាលបរិច្ឆេទ</th>
-                                        <th class="p-3 whitespace-nowrap" data-i18n="thIn">ចូល</th>
-                                        <th class="p-3 whitespace-nowrap" data-i18n="thOut">ចេញ</th>
-                                        <th class="p-3 text-right whitespace-nowrap">1.5x</th>
-                                        <th class="p-3 text-right whitespace-nowrap">2.0x</th>
-                                        <th class="p-3 w-10"></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="otTableBody" class="divide-y divide-gray-100 dark:divide-gray-700">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <button onclick="addOTRow()" class="mt-2 w-full py-3 bg-pineGreen hover:bg-green-800 text-white rounded-xl text-sm font-bold flex items-center justify-center gap-2 shadow-lg transition-all active:scale-95 border-b-4 border-green-900 font-sans">
-                        <i data-lucide="plus-circle" class="w-5 h-5"></i> <span data-i18n="btnAddRow">បន្ថែមជួរថ្មី</span>
-                    </button>
-                </div>
-
-                <div class="bg-gray-50 dark:bg-slate-800/50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 border-t border-gray-100 dark:border-gray-700">
-                    <button type="button" class="mt-3 inline-flex w-full justify-center rounded-xl bg-white dark:bg-slate-700 px-3 py-2 text-sm font-semibold text-gray-900 dark:text-gray-200 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-slate-600 sm:mt-0 sm:w-auto font-sans" onclick="toggleModal('ot-modal')" data-i18n="btnClose">បិទ</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- DONATE MODAL FIXED -->
+    <!-- DONATE MODAL -->
     <div id="donate-modal" class="fixed inset-0 z-50 hidden modal-overlay" aria-labelledby="donate-modal-title" role="dialog" aria-modal="true">
-        <div class="fixed inset-0 bg-darkNight/80 backdrop-blur-sm transition-opacity" onclick="toggleModal('donate-modal')"></div>
+        <div class="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="toggleModal('donate-modal')"></div>
         <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
-            <div class="relative transform overflow-hidden rounded-3xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-md modal-enter border-4 border-gold">
-                <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-yellow-400 to-orange-500"></div>
-                <div class="bg-white px-4 pb-4 pt-6 text-center">
-                    <div class="mx-auto flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-yellow-100 mb-4 animate-bounce">
-                        <i data-lucide="qr-code" class="w-8 h-8 text-orange-500"></i>
+            <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xs modal-enter border-t-4 border-khmerGold">
+                <div class="bg-gradient-to-br from-khmerBlue to-blue-900 p-6 text-center text-white">
+                    <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-white/20 mb-3 backdrop-blur-sm">
+                        <i data-lucide="coffee" class="w-7 h-7 text-white"></i>
                     </div>
-                    <h3 class="text-2xl font-bold leading-6 text-santaRed font-sans mb-2" id="donate-modal-title" data-i18n="donateTitle">
+                    <h3 class="text-xl font-bold font-sans mb-1" id="donate-modal-title" data-i18n="donateTitle">
                         ឧបត្ថម្ភគាំទ្រ Admin ☕
                     </h3>
-                    <p class="text-sm text-gray-500 font-sans" data-i18n="donateSub">
+                    <p class="text-xs text-blue-200 font-sans" data-i18n="donateSub">
                         Scan. Pay. Done.
                     </p>
                 </div>
-                <div class="px-6 py-4 text-center">
-                    <div class="bg-gray-100 p-4 rounded-2xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center gap-2">
-                        <div class="w-64 h-64 bg-white p-2 rounded-lg shadow-sm">
+                <div class="p-6 text-center">
+                    <div class="bg-white p-2 rounded-xl border border-gray-200 shadow-sm inline-block">
+                        <div class="w-48 h-48 bg-gray-100 rounded-lg overflow-hidden relative">
                             <!-- REPLACE WITH YOUR QR CODE URL HERE -->
                             <img src="my_qr.jpg" alt="ABA QR Code" class="w-full h-full object-contain">
                         </div>
-                        <div class="mt-2 text-center w-full">
-                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-1">ABA Bank</p>
-                            <p class="text-lg font-bold text-gray-800">HUN SAMNANG</p>
-                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-1">ABA Bank</p>
+                        <p class="text-base font-bold text-khmerBlue">HUN SAMNANG</p>
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 flex justify-center">
-                    <button type="button" class="inline-flex w-full justify-center rounded-xl bg-gradient-to-r from-santaRed to-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 sm:w-auto font-sans" onclick="toggleModal('donate-modal')" data-i18n="btnClose">បិទ</button>
+                    <button type="button" class="inline-flex w-full justify-center rounded-xl bg-gray-200 text-gray-700 hover:bg-gray-300 px-4 py-2 text-sm font-bold shadow-sm transition-all sm:w-auto font-sans" onclick="toggleModal('donate-modal')" data-i18n="btnClose">បិទ</button>
                 </div>
             </div>
         </div>
@@ -532,7 +492,7 @@
                 createdBy: "បង្កើតដោយ",
                 donateBtn: "Donate Admin",
                 balanceTitle: "ប្រាក់ខែនៅសល់ (Balance)",
-                balanceSub: "សរុបទុកក្នុងកូនជ្រូក 🐖",
+                balanceSub: "សរុបទុកក្នុងកូនជ្រូក",
                 otModalTitle: "តារាងកត់ម៉ោង",
                 thDate: "កាលបរិច្ឆេទ",
                 thIn: "ចូល",
@@ -567,7 +527,7 @@
                 createdBy: "Created By",
                 donateBtn: "Donate Admin",
                 balanceTitle: "Net Balance",
-                balanceSub: "Savings for Piggy Bank 🐖",
+                balanceSub: "Savings for Piggy Bank",
                 otModalTitle: "Overtime Record",
                 thDate: "Date",
                 thIn: "In",
@@ -602,7 +562,7 @@
                 createdBy: "Tạo bởi",
                 donateBtn: "Donate Admin",
                 balanceTitle: "Số Dư Thực Tế (Balance)",
-                balanceSub: "Tiết kiệm cho heo đất 🐖",
+                balanceSub: "Tiết kiệm cho heo đất",
                 otModalTitle: "Ghi Chép OT",
                 thDate: "Ngày",
                 thIn: "Vào",
@@ -617,7 +577,6 @@
             }
         };
 
-        // Expense Dictionary for Translation
         const expenseDictionary = {
             fuel: { km: 'ថ្លៃសាំង', en: 'Gasoline', vi: 'Xăng xe' },
             debt: { km: 'សងគេ', en: 'Debts', vi: 'Trả nợ' },
@@ -657,7 +616,6 @@
         }
 
         function updateLanguage() {
-            // Update toggle button text
             const langLabel = document.getElementById('lang-label');
             if (currentLang === 'km') {
                 langLabel.innerText = 'KH';
@@ -667,7 +625,6 @@
                 langLabel.innerText = 'VN';
             }
             
-            // Update Body Class for Font
             document.body.classList.remove('lang-en', 'lang-vi');
             if(currentLang === 'en') {
                 document.body.classList.add('lang-en');
@@ -675,13 +632,11 @@
                 document.body.classList.add('lang-vi');
             }
 
-            // Update Creator Name Correctly (Updated to ហ៊ន សំណាង)
             const creatorNameEl = document.getElementById('creator-name');
             if (creatorNameEl) {
-                creatorNameEl.innerText = currentLang === 'km' ? 'ហ៊ន សំណាង' : 'HUN SAMNANG';
+                creatorNameEl.innerText = currentLang === 'km' ? 'ហ៊ុន សំណាង' : 'HUN SAMNANG';
             }
 
-            // Update all static text
             const elements = document.querySelectorAll('[data-i18n]');
             elements.forEach(el => {
                 const key = el.getAttribute('data-i18n');
@@ -690,13 +645,11 @@
                 }
             });
 
-            // Update placeholders for expense names
             const expInputs = document.querySelectorAll('.expense-name-input');
             expInputs.forEach(input => {
                 input.placeholder = translations[currentLang].expenseNamePlaceholder;
             });
 
-            // Update Default Expense Rows
             const expenseRows = document.querySelectorAll('.expense-name-input[data-key]');
             expenseRows.forEach(input => {
                 const key = input.getAttribute('data-key');
@@ -741,6 +694,25 @@
             createExpenseRow('', 'receipt');
         }
 
+        // --- PARTICLE EFFECT ---
+        function createGoldParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'gold-particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            const size = Math.random() * 3 + 3 + 'px';
+            particle.style.width = size;
+            particle.style.height = size;
+            particle.style.opacity = Math.random() * 0.5 + 0.3;
+            
+            const duration = Math.random() * 5 + 5;
+            particle.style.animationDuration = duration + 's';
+            
+            document.getElementById('particles-container').appendChild(particle);
+            setTimeout(() => { particle.remove(); }, duration * 1000);
+        }
+        setInterval(createGoldParticle, 400);
+
+
         // --- REPORT & DOWNLOAD ---
         function openDownloadModal() {
             calculateAll(true); 
@@ -752,7 +724,6 @@
             document.getElementById('report-expense').innerText = document.getElementById('totalExpense').innerText;
             document.getElementById('report-balance').innerText = document.getElementById('grandTotal').innerText;
 
-            // Populate List
             const listContainer = document.getElementById('report-expense-list');
             listContainer.innerHTML = '';
             
@@ -764,14 +735,14 @@
                 if (val && parseFloat(val) > 0) {
                     hasItems = true;
                     const item = document.createElement('div');
-                    item.className = "flex justify-between";
-                    item.innerHTML = `<span>${name}</span><span>$${parseFloat(val).toFixed(2)}</span>`;
+                    item.className = "flex justify-between border-b border-dashed border-gray-200 pb-1 last:border-0";
+                    item.innerHTML = `<span class="font-medium text-gray-600">${name}</span><span class="font-bold text-gray-800">$${parseFloat(val).toFixed(2)}</span>`;
                     listContainer.appendChild(item);
                 }
             });
 
             if (!hasItems) {
-                listContainer.innerHTML = '<div class="text-center italic text-xs opacity-50">- No Expenses -</div>';
+                listContainer.innerHTML = '<div class="text-center italic text-xs opacity-50 py-2">- No Expenses -</div>';
             }
 
             toggleModal('download-modal');
@@ -787,21 +758,6 @@
             });
         }
 
-        // --- TOGGLES ---
-        function createSnowflake() {
-            const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake');
-            snowflake.innerText = '❄';
-            snowflake.style.left = Math.random() * 100 + 'vw';
-            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
-            snowflake.style.opacity = Math.random();
-            const duration = Math.random() * 3 + 5; 
-            snowflake.style.animationDuration = duration + 's';
-            document.body.appendChild(snowflake);
-            setTimeout(() => { snowflake.remove(); }, duration * 1000);
-        }
-        setInterval(createSnowflake, 300);
-
         const themeToggleBtn = document.getElementById('theme-toggle');
         const htmlElement = document.documentElement;
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -814,10 +770,7 @@
             localStorage.theme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
         });
 
-        function toggleFooter() {
-            // REMOVED THIS FUNCTIONALITY AS BUTTON WAS REMOVED
-        }
-
+        // --- EXPENSE TOGGLE FUNCTION ---
         function toggleExpensesList() {
             const content = document.getElementById('expenses-content');
             const btn = document.getElementById('btn-expense-toggle');
@@ -826,28 +779,11 @@
             if (isHidden) {
                 content.classList.remove('hidden-content');
                 content.classList.add('visible-content');
-                btn.innerHTML = '<i data-lucide="eye" class="w-5 h-5"></i>';
+                btn.innerHTML = '<i data-lucide="eye-off" class="w-5 h-5"></i>'; // Eye Off = "Click to hide"
             } else {
                 content.classList.remove('visible-content');
                 content.classList.add('hidden-content');
-                btn.innerHTML = '<i data-lucide="eye-off" class="w-5 h-5"></i>';
-            }
-            lucide.createIcons();
-        }
-
-        function toggleOTList() {
-            const content = document.getElementById('ot-list-content');
-            const btn = document.getElementById('btn-ot-toggle');
-            const isHidden = content.classList.contains('hidden-content');
-            
-            if (isHidden) {
-                content.classList.remove('hidden-content');
-                content.classList.add('visible-content');
-                btn.innerHTML = '<i data-lucide="eye" class="w-5 h-5"></i>';
-            } else {
-                content.classList.remove('visible-content');
-                content.classList.add('hidden-content');
-                btn.innerHTML = '<i data-lucide="eye-off" class="w-5 h-5"></i>';
+                btn.innerHTML = '<i data-lucide="eye" class="w-5 h-5"></i>'; // Eye = "Click to show"
             }
             lucide.createIcons();
         }
@@ -857,20 +793,12 @@
             if (modal) modal.classList.toggle('hidden');
         }
 
-        // --- INITIAL STATE SETUP ---
         function setInitialState() {
             // Expenses: Collapsed by default (Eye Off)
             const expContent = document.getElementById('expenses-content');
             const expBtn = document.getElementById('btn-expense-toggle');
             expContent.classList.add('hidden-content'); 
-            expBtn.innerHTML = '<i data-lucide="eye-off" class="w-5 h-5"></i>';
-
-            // OT List: Visible by default (Eye On)
-            const otContent = document.getElementById('ot-list-content');
-            const otBtn = document.getElementById('btn-ot-toggle');
-            otContent.classList.add('visible-content');
-            otBtn.innerHTML = '<i data-lucide="eye" class="w-5 h-5"></i>';
-
+            expBtn.innerHTML = '<i data-lucide="eye" class="w-5 h-5"></i>'; // Initial: Eye = "Click to show"
             lucide.createIcons();
         }
 
@@ -887,28 +815,9 @@
             document.getElementById('rate200').innerText = '$' + rate200.toFixed(2);
             document.getElementById('displayBaseSalary').innerText = '$' + baseSalary.toFixed(2);
 
-            let tableHours150 = 0;
-            let tableHours200 = 0;
-            const rows = document.querySelectorAll('#otTableBody tr');
-            const hasTableRows = rows.length > 0;
-            rows.forEach(row => {
-                const start = row.querySelector('.start-time').value;
-                const end = row.querySelector('.end-time').value;
-                if (start && end) {
-                    const hours = calculateHoursBreakdown(start, end);
-                    tableHours150 += hours.h150;
-                    tableHours200 += hours.h200;
-                    row.querySelector('.res-150').innerText = hours.h150.toFixed(1);
-                    row.querySelector('.res-200').innerText = hours.h200.toFixed(1);
-                }
-            });
-
             const input150 = document.getElementById('manualHours150');
             const input200 = document.getElementById('manualHours200');
-            if (hasTableRows && !isManualInput) {
-                input150.value = tableHours150.toFixed(1);
-                input200.value = tableHours200.toFixed(1);
-            }
+            
             const finalHours150 = parseFloat(input150.value) || 0;
             const finalHours200 = parseFloat(input200.value) || 0;
             const money150 = finalHours150 * rate150;
@@ -931,52 +840,13 @@
             document.getElementById('grandTotal').innerText = '$' + (totalIncome - totalExpense).toFixed(2);
         }
 
-        function timeToDecimal(timeStr) {
-            const [h, m] = timeStr.split(':').map(Number);
-            return h + (m / 60);
-        }
-
-        function calculateHoursBreakdown(startStr, endStr) {
-            let start = timeToDecimal(startStr);
-            let end = timeToDecimal(endStr);
-            if (end < start) end += 24; 
-            const cutoff = 22.0; 
-            const startLimit = 18.0; 
-            const effectiveStart = Math.max(start, startLimit); 
-            let h150 = 0;
-            let h200 = 0;
-            if (effectiveStart < cutoff) {
-                if (end <= cutoff) { h150 = end - effectiveStart; } else { h150 = cutoff - effectiveStart; }
-            }
-            if (end > cutoff) {
-                if (effectiveStart >= cutoff) { h200 = end - effectiveStart; } else { h200 = end - cutoff; }
-            }
-            return { h150: Math.max(0, h150), h200: Math.max(0, h200) };
-        }
-
-        function addOTRow() {
-            const tbody = document.getElementById('otTableBody');
-            const row = document.createElement('tr');
-            row.className = "border-b border-gray-100 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700/30 transition-colors";
-            const today = new Date().toISOString().split('T')[0];
-            row.innerHTML = `
-                <td class="p-3"><input type="date" value="${today}" class="bg-transparent text-gray-600 dark:text-gray-400 text-xs outline-none font-medium w-full font-sans"></td>
-                <td class="p-3"><input type="time" class="start-time p-1.5 bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-600 rounded-lg text-xs w-full focus:ring-1 focus:ring-blue-500 outline-none" oninput="calculateAll()"></td>
-                <td class="p-3"><input type="time" class="end-time p-1.5 bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-600 rounded-lg text-xs w-full focus:ring-1 focus:ring-blue-500 outline-none" oninput="calculateAll()"></td>
-                <td class="p-3 text-right font-mono res-150 text-blue-600 font-bold">0.0</td>
-                <td class="p-3 text-right font-mono res-200 text-purple-600 font-bold">0.0</td>
-                <td class="p-3 text-center"><button onclick="this.closest('tr').remove(); calculateAll()" class="text-gray-400 hover:text-red-500 transition-colors p-1 rounded-full hover:bg-red-50 dark:hover:bg-red-900/20"><i data-lucide="x" class="w-4 h-4"></i></button></td>
-            `;
-            tbody.appendChild(row);
-            lucide.createIcons();
-        }
-
         // Initialize
-        updateLanguage(); // Apply lang first
+        updateLanguage();
         initExpenses();
-        setInitialState(); // Set default toggles
-        addOTRow();
+        setInitialState();
         calculateAll();
     </script>
 </body>
 </html>
+
+
