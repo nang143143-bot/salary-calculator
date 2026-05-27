@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="km" class="light">
 <head>
@@ -5,37 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <!-- Primary Meta Tags -->
-    <title>គណនាប្រាក់ខែ - សួស្ដីឆ្នាំថ្មី</title>
-    <meta name="title" content="គណនាប្រាក់ខែ - សួស្ដីឆ្នាំថ្មី">
-    <meta name="description" content="កម្មវិធីគណនាប្រាក់ខែ (USD & KHR) ងាយស្រួលប្រើ ត្រឹមត្រូវ និងរហ័ស។ អបអរសាទរពិធីបុណ្យចូលឆ្នាំថ្មីប្រពៃណីជាតិខ្មែរ!">
-    <meta name="theme-color" content="#BE123C">
+    <title>កម្មវិធីគណនាប្រាក់ខែអាជីព - Smart Payroll KH</title>
+    <meta name="title" content="កម្មវិធីគណនាប្រាក់ខែអាជីព - Smart Payroll KH">
+    <meta name="description" content="កម្មវិធីគណនាប្រាក់ខែបុគ្គលិក គណនា ប.ស.ស. និងពន្ធលើប្រាក់បៀវត្សរ៍រហ័សទាន់ចិត្ត និងត្រឹមត្រូវតាមស្តង់ដារកម្ពុជា។">
+    <meta name="theme-color" content="#0F766E">
 
-    <!-- Open Graph / Facebook / Telegram -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://i.imgur.com/GcPY4Li_d.webp?maxwidth=760&fidelity=grand"> <!-- ត្រូវប្តូរទៅជា Link ពិតប្រាកដរបស់អ្នកពេល Upload លើ Internet -->
-    <meta property="og:title" content="គណនាប្រាក់ខែ - សួស្ដីឆ្នាំថ្មី">
-    <meta property="og:description" content="កម្មវិធីគណនាប្រាក់ខែ (USD & KHR) ងាយស្រួលប្រើ ត្រឹមត្រូវ និងរហ័ស។">
-    <!-- បានប្តូរពី .webp ទៅ .jpg ដើម្បីឱ្យ Facebook/Telegram ងាយស្រួលអាន -->
-    <meta property="og:image" content="https://i.imgur.com/GcPY4Li_d.jpg"> 
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://i.imgur.com/GcPY4Li_d.webp?maxwidth=760&fidelity=grand">
-    <meta property="twitter:title" content="គណនាប្រាក់ខែ - សួស្ដីឆ្នាំថ្មី">
-    <meta property="twitter:description" content="កម្មវិធីគណនាប្រាក់ខែ (USD & KHR) ងាយស្រួលប្រើ ត្រឹមត្រូវ និងរហ័ស។">
-    <meta property="twitter:image" content="https://i.imgur.com/GcPY4Li_d.jpg">
+    <meta property="og:title" content="កម្មវិធីគណនាប្រាក់ខែអាជីព - Smart Payroll KH">
+    <meta property="og:description" content="គណនាប្រាក់ខែ ម៉ោងបន្ថែមOT ភាគទាន ប.ស.ស. និងពន្ធលើប្រាក់បៀវត្សរ៍យ៉ាងងាយស្រួល។">
+    <meta property="og:image" content="https://i.imgur.com/GcPY4Li_d.jpg">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Khmer Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Dangrek&family=Kantumruy+Pro:wght@300;400;600;700&family=Moul&family=Koulen&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&family=Koulen&display=swap" rel="stylesheet">
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Confetti -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <script>
         tailwind.config = {
@@ -44,17 +31,14 @@
                 extend: {
                     fontFamily: {
                         sans: ['"Kantumruy Pro"', 'sans-serif'],
-                        header: ['"Dangrek"', 'cursive'],
-                        wishes: ['"Moul"', 'serif'],
                         title: ['"Koulen"', 'cursive'],
                     },
                     colors: {
-                        knyRed: '#BE123C',      
-                        knyDeepRed: '#881337',  
-                        knyGold: '#F59E0B',     
-                        knyLightGold: '#FEF3C7',
-                        darkBg: '#2A0A12',      
-                        darkCard: '#3F0F1C',    
+                        brandPrimary: '#0F766E',   // Deep Teal
+                        brandSecondary: '#0D9488', // Teal Accent
+                        brandDark: '#0F172A',      // Slate Dark
+                        brandCardDark: '#1E293B',  // Slate Card Dark
+                        amberGold: '#D97706',      // Premium Amber Gold
                     }
                 }
             }
@@ -63,55 +47,62 @@
 
     <style>
         body {
-            transition: background-color 0.3s ease;
+            transition: background-color 0.4s ease, color 0.4s ease;
             font-family: 'Kantumruy Pro', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         .premium-card {
-            border-radius: 24px;
-            transition: all 0.3s ease;
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .light body { background-color: #FFF8F0; } 
+        .light body { background-color: #F8FAFC; } 
         .light .premium-card {
-            background: white;
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            box-shadow: 0 10px 25px -5px rgba(190, 18, 60, 0.08);
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 4px 20px -2px rgba(15, 118, 110, 0.05), 0 2px 4px -1px rgba(0,0,0,0.01);
         }
-        .light .input-box { background: #FFF1F2; color: #BE123C; }
+        .light .input-box { background: #F1F5F9; color: #0F172A; border-color: #E2E8F0; }
 
+        .dark body { background-color: #0F172A; }
         .dark .premium-card {
-            background: #3F0F1C;
-            border: 1px solid rgba(245, 158, 11, 0.15);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+            background: #1E293B;
+            border: 1px solid #334155;
+            box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
         }
-        .dark .input-box { background: #501424; color: #FEF3C7; }
+        .dark .input-box { background: #0F172A; color: #F1F5F9; border-color: #334155; }
 
         .input-box {
-            border: 2px solid transparent;
+            border: 1.5px solid transparent;
             border-radius: 12px;
             transition: all 0.2s ease;
-            font-weight: 700;
+            font-weight: 600;
         }
 
         .input-box:focus {
-            border-color: #F59E0B; 
+            border-color: #0D9488; 
             outline: none;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.15);
+        }
+        .dark .input-box:focus {
+            background: #0F172A;
         }
 
         .summary-row {
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px dashed rgba(245, 158, 11, 0.3);
+            padding: 12px 0;
+            border-bottom: 1px dashed #E2E8F0;
+        }
+        .dark .summary-row {
+            border-bottom-color: #334155;
         }
 
         .btn-gradient {
-            background: linear-gradient(135deg, #BE123C 0%, #881337 100%);
-            box-shadow: 0 8px 20px rgba(190, 18, 60, 0.4);
+            background: linear-gradient(135deg, #0F766E 0%, #0D9488 100%);
+            box-shadow: 0 4px 14px rgba(13, 148, 136, 0.3);
         }
 
         @keyframes slideDown {
@@ -121,239 +112,286 @@
         .animate-slide-down { animation: slideDown 0.3s ease-out forwards; }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .fade-in { animation: fadeIn 0.4s ease forwards; }
 
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(5deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
-        .floating-icon { animation: float 4s ease-in-out infinite; }
-        
-        /* Bank Logo styling */
         .bank-logo {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             object-fit: contain;
-            border-radius: 12px;
+            border-radius: 8px;
             background-color: white;
             padding: 2px;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
     </style>
 </head>
-<body class="text-slate-900 dark:text-orange-50 min-h-screen">
+<body class="text-slate-800 dark:text-slate-100 min-h-screen">
 
-    <div id="main-app" class="pb-40">
+    <div id="main-app" class="pb-36">
         
-        <!-- HEADER KNY THEME -->
-        <header class="bg-gradient-to-br from-knyRed via-red-800 to-knyDeepRed pt-14 pb-24 px-6 text-center relative overflow-hidden transition-colors duration-500 shadow-xl">
-            <div class="absolute inset-0 opacity-10 mix-blend-overlay">
-                <svg width="100%" height="100%"><pattern id="kbach" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 20 0 L 40 20 L 20 40 L 0 20 Z" fill="none" stroke="#F59E0B" stroke-width="1"/></pattern><rect width="100%" height="100%" fill="url(#kbach)"/></svg>
+        <!-- HEADER (Professional corporate style) -->
+        <header class="bg-gradient-to-r from-brandPrimary to-[#115E59] pt-12 pb-20 px-6 text-center relative overflow-hidden shadow-md">
+            <!-- Subtle professional background pattern -->
+            <div class="absolute inset-0 opacity-5 mix-blend-overlay">
+                <svg width="100%" height="100%"><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="#FFFFFF" stroke-width="1"/></pattern><rect width="100%" height="100%" fill="url(#grid)"/></svg>
             </div>
             
-            <div class="absolute top-8 right-6 flex gap-2 z-30">
-                <button onclick="copyToClipboard()" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white active:scale-90 transition-all border border-knyGold/30 backdrop-blur-md shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+            <div class="absolute top-6 right-6 flex gap-2 z-30">
+                <button onclick="copyToClipboard()" class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white active:scale-95 transition-all border border-white/10 hover:bg-white/20">
                     <i data-lucide="share-2" class="w-4 h-4"></i>
                 </button>
-                <button id="theme-btn" onclick="toggleDarkMode()" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-knyGold active:scale-90 transition-all border border-knyGold/30 backdrop-blur-md shadow-[0_0_15px_rgba(245,158,11,0.2)]">
-                    <i data-lucide="moon" class="w-5 h-5"></i>
+                <button id="theme-btn" onclick="toggleDarkMode()" class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white active:scale-95 transition-all border border-white/10 hover:bg-white/20">
+                    <i data-lucide="moon" class="w-4.5 h-4.5"></i>
                 </button>
             </div>
 
-            <div class="relative z-10 flex flex-col items-center justify-center gap-1">
-                <div class="flex items-center gap-2 mb-2">
-                    <i data-lucide="sparkles" class="w-5 h-5 text-knyGold floating-icon" style="animation-delay: 0s;"></i>
-                    <h2 class="font-wishes text-knyLightGold text-xl tracking-wider" style="text-shadow: 0 2px 10px rgba(0,0,0,0.3);">សួស្ដីឆ្នាំថ្មី</h2>
-                    <i data-lucide="sparkles" class="w-5 h-5 text-knyGold floating-icon" style="animation-delay: 1s;"></i>
+            <div class="relative z-10 flex flex-col items-center justify-center gap-1.5">
+                <div class="w-12 h-12 bg-white/15 rounded-2xl flex items-center justify-center border border-white/20 shadow-inner mb-2">
+                    <i data-lucide="wallet" class="w-6 h-6 text-teal-200"></i>
                 </div>
-                <h1 class="text-4xl font-header text-white leading-tight drop-shadow-lg">គណនាប្រាក់ខែ</h1>
-                <div class="inline-flex items-center gap-2 bg-black/20 px-4 py-1.5 rounded-full mt-2 border border-white/10">
-                    <i data-lucide="flower-2" class="w-4 h-4 text-pink-300"></i>
-                    <p class="text-knyGold text-sm font-title tracking-widest uppercase">Smart Calculator 2026</p>
-                    <i data-lucide="flower-2" class="w-4 h-4 text-pink-300"></i>
+                <h1 class="text-3xl font-bold font-sans text-white tracking-wide">ប្រព័ន្ធគណនាប្រាក់បៀវត្ស</h1>
+                <p class="text-teal-100 text-xs font-light max-w-xs opacity-90">ផ្ទៀងផ្ទាត់ប្រាក់ចំណូល ម៉ោងបន្ថែម ពន្ធ និង ប.ស.ស. ឱ្យបានត្រឹមត្រូវបំផុត</p>
+                <div class="inline-flex items-center gap-2 bg-teal-950/40 px-3.5 py-1 rounded-full border border-teal-500/30 mt-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
+                    <p class="text-[10px] text-teal-300 font-medium tracking-wider uppercase">Professional System 2026</p>
                 </div>
             </div>
         </header>
 
-        <main class="max-w-md mx-auto px-5 -mt-12 relative z-20 space-y-5">
+        <main class="max-w-md mx-auto px-4 -mt-10 relative z-20 space-y-4">
             
             <!-- INPUT SETTINGS -->
-            <section class="premium-card p-6 fade-in border-t-4 border-t-knyGold">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 bg-red-100 dark:bg-red-900/50 rounded-xl flex items-center justify-center text-knyRed dark:text-knyGold">
-                        <i data-lucide="calculator" class="w-5 h-5"></i>
+            <section class="premium-card p-5 fade-in border-t-4 border-t-brandSecondary">
+                <div class="flex items-center gap-2.5 mb-5 border-b border-slate-100 dark:border-slate-700/50 pb-3">
+                    <div class="w-9 h-9 bg-teal-50 dark:bg-teal-950/40 rounded-lg flex items-center justify-center text-brandPrimary dark:text-teal-300">
+                        <i data-lucide="database" class="w-4.5 h-4.5"></i>
                     </div>
-                    <h2 class="font-bold text-lg text-knyRed dark:text-knyLightGold">ព័ត៌មានមូលដ្ឋាន</h2>
+                    <h2 class="font-bold text-sm uppercase tracking-wider text-slate-700 dark:text-slate-200">ព័ត៌មានប្រាក់បៀវត្សជាមូលដ្ឋាន</h2>
                 </div>
                 
                 <div class="space-y-4">
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-2 gap-3.5">
                         <div class="relative">
-                            <label class="block text-[10px] font-bold text-slate-500 dark:text-knyGold/70 mb-1.5 ml-1 uppercase">ប្រាក់ខែគោល (USD)</label>
+                            <label class="block text-[10px] font-semibold text-slate-400 dark:text-slate-400 mb-1.5 ml-1 uppercase">ប្រាក់ខែគោល (USD)</label>
                             <div class="relative">
-                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-knyRed/50 dark:text-knyGold/50 font-bold">$</span>
-                                <input type="number" id="baseSalary" value="208" class="input-box w-full py-3.5 pl-8 pr-4 text-xl" oninput="calculate()">
+                                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 font-bold">$</span>
+                                <input type="number" id="baseSalary" value="250" class="input-box w-full py-2.5 pl-7 pr-3 text-base" oninput="calculate()">
                             </div>
                         </div>
                         <div class="relative">
-                            <label class="block text-[10px] font-bold text-slate-500 dark:text-knyGold/70 mb-1.5 ml-1 uppercase">អត្រាប្តូរប្រាក់ ($1=?៛)</label>
-                            <input type="number" id="exchangeRate" value="4100" class="input-box w-full py-3.5 px-4 text-xl text-orange-600 dark:text-orange-400" oninput="calculate()">
+                            <label class="block text-[10px] font-semibold text-slate-400 dark:text-slate-400 mb-1.5 ml-1 uppercase">អត្រាប្តូរប្រាក់ ($1 = ៛)</label>
+                            <input type="number" id="exchangeRate" value="4100" class="input-box w-full py-2.5 px-3.5 text-base text-teal-700 dark:text-teal-300" oninput="calculate()">
                         </div>
                     </div>
 
-                    <!-- THREEE COLUMNS GRID FOR DAYS -->
-                    <div class="grid grid-cols-3 gap-3">
-                        <div class="space-y-1.5">
-                            <label class="text-[9px] font-bold text-slate-500 dark:text-knyGold/70 ml-1 uppercase">ថ្ងៃសរុប/ខែ</label>
-                            <input type="number" id="workDays" value="26" class="input-box w-full p-2.5 text-center" oninput="calculate()">
+                    <!-- WORK DAYS CONFIG -->
+                    <div class="grid grid-cols-3 gap-2.5 bg-slate-50 dark:bg-slate-800/40 p-3 rounded-16 border border-slate-100 dark:border-slate-700/40">
+                        <div class="space-y-1">
+                            <label class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase block text-center">ថ្ងៃកំណត់/ខែ</label>
+                            <input type="number" id="workDays" value="26" class="input-box w-full p-2 text-center text-sm" oninput="calculate()">
                         </div>
-                        <div class="space-y-1.5">
-                            <label class="text-[9px] font-bold text-knyRed dark:text-knyGold ml-1 uppercase">ធ្វើការជាក់ស្តែង</label>
-                            <input type="number" id="actualDays" value="26" class="input-box w-full p-2.5 text-center border-knyGold/50" oninput="calculate()">
+                        <div class="space-y-1">
+                            <label class="text-[9px] font-bold text-teal-600 dark:text-teal-400 uppercase block text-center">ថ្ងៃធ្វើការជាក់ស្តែង</label>
+                            <input type="number" id="actualDays" value="26" class="input-box w-full p-2 text-center text-sm border-teal-500/20" oninput="calculate()">
                         </div>
-                        <div class="space-y-1.5">
-                            <label class="text-[9px] font-bold text-slate-500 dark:text-knyGold/70 ml-1 uppercase">ម៉ោង/ថ្ងៃ</label>
-                            <input type="number" id="workHours" value="8" class="input-box w-full p-2.5 text-center" oninput="calculate()">
+                        <div class="space-y-1">
+                            <label class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase block text-center">ម៉ោងកំណត់/ថ្ងៃ</label>
+                            <input type="number" id="workHours" value="8" class="input-box w-full p-2 text-center text-sm" oninput="calculate()">
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-3 gap-2 mt-2">
-                        <div class="bg-orange-50/50 dark:bg-black/20 p-3 rounded-2xl text-center border border-orange-100 dark:border-white/5">
-                            <span class="text-[9px] font-bold text-slate-500 dark:text-slate-400 block mb-1">១ម៉ោង (100%)</span>
-                            <p id="rate100USD" class="text-xs font-bold text-knyRed dark:text-knyLightGold">$0.00</p>
-                            <p id="rate100KHR" class="text-[9px] text-orange-600 dark:text-orange-400 font-bold">0 ៛</p>
+                    <!-- HOURLY RATES VIEW -->
+                    <div class="grid grid-cols-3 gap-2 pt-1">
+                        <div class="bg-slate-50 dark:bg-slate-800/20 p-2.5 rounded-xl text-center border border-slate-100 dark:border-slate-800">
+                            <span class="text-[8px] font-medium text-slate-400 block mb-0.5">អត្រាធម្មតា 100%</span>
+                            <p id="rate100USD" class="text-xs font-bold text-slate-700 dark:text-slate-200">$0.00</p>
+                            <p id="rate100KHR" class="text-[8px] text-slate-400 font-semibold">0 ៛</p>
                         </div>
-                        <div class="bg-red-50/80 dark:bg-red-900/20 p-3 rounded-2xl text-center border border-red-100 dark:border-red-900/30">
-                            <span class="text-[9px] font-bold text-red-600 dark:text-red-400 block mb-1">OT (150%)</span>
-                            <p id="rate150USD" class="text-xs font-bold text-red-700 dark:text-red-300">$0.00</p>
-                            <p id="rate150KHR" class="text-[9px] text-orange-600 dark:text-orange-400 font-bold">0 ៛</p>
+                        <div class="bg-teal-500/5 dark:bg-teal-500/10 p-2.5 rounded-xl text-center border border-teal-500/10">
+                            <span class="text-[8px] font-medium text-teal-600 dark:text-teal-400 block mb-0.5">អត្រា OT 1.5x</span>
+                            <p id="rate150USD" class="text-xs font-bold text-teal-700 dark:text-teal-300">$0.00</p>
+                            <p id="rate150KHR" class="text-[8px] text-teal-500/70 font-semibold">0 ៛</p>
                         </div>
-                        <div class="bg-amber-50/80 dark:bg-amber-900/20 p-3 rounded-2xl text-center border border-amber-100 dark:border-amber-900/30">
-                            <span class="text-[9px] font-bold text-amber-600 dark:text-amber-500 block mb-1">OT (200%)</span>
-                            <p id="rate200USD" class="text-xs font-bold text-amber-700 dark:text-amber-400">$0.00</p>
-                            <p id="rate200KHR" class="text-[9px] text-orange-600 dark:text-orange-400 font-bold">0 ៛</p>
+                        <div class="bg-amber-500/5 dark:bg-amber-500/10 p-2.5 rounded-xl text-center border border-amber-500/10">
+                            <span class="text-[8px] font-medium text-amber-600 dark:text-amber-400 block mb-0.5">អត្រា OT 2.0x</span>
+                            <p id="rate200USD" class="text-xs font-bold text-amber-700 dark:text-amber-300">$0.00</p>
+                            <p id="rate200KHR" class="text-[8px] text-amber-500/70 font-semibold">0 ៛</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- OT SECTION -->
-            <section class="premium-card p-6 border-l-4 border-l-orange-500 fade-in" style="animation-delay: 0.1s">
-                <div class="flex items-center gap-3 mb-5">
-                    <div class="w-10 h-10 bg-orange-100 dark:bg-orange-900/40 rounded-xl flex items-center justify-center text-orange-600 dark:text-orange-400">
-                        <i data-lucide="timer" class="w-5 h-5"></i>
+            <section class="premium-card p-5 fade-in border-l-4 border-l-teal-500">
+                <div class="flex items-center gap-2.5 mb-4 border-b border-slate-100 dark:border-slate-700/50 pb-3">
+                    <div class="w-9 h-9 bg-teal-50 dark:bg-teal-950/40 rounded-lg flex items-center justify-center text-[#14B8A6]">
+                        <i data-lucide="clock" class="w-4.5 h-4.5"></i>
                     </div>
-                    <h2 class="font-bold text-slate-800 dark:text-orange-50">ម៉ោងបន្ថែម (OT)</h2>
+                    <h2 class="font-bold text-sm text-slate-700 dark:text-slate-200 uppercase tracking-wider">ម៉ោងបន្ថែម (Overtime)</h2>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="space-y-1.5">
-                        <label class="text-[11px] font-bold text-red-600 dark:text-red-400 ml-1">ម៉ោង 1.5x</label>
-                        <input type="number" id="ot150" placeholder="0" class="input-box w-full p-4 text-right" oninput="calculate()">
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">ម៉ោងបន្ថែម 1.5x (ថ្ងៃធម្មតា)</label>
+                        <input type="number" id="ot150" placeholder="0" class="input-box w-full p-3 text-right" oninput="calculate()">
                     </div>
-                    <div class="space-y-1.5">
-                        <label class="text-[11px] font-bold text-amber-600 dark:text-amber-500 ml-1">ម៉ោង 2.0x</label>
-                        <input type="number" id="ot200" placeholder="0" class="input-box w-full p-4 text-right" oninput="calculate()">
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">ម៉ោងបន្ថែម 2.0x (ថ្ងៃសម្រាក)</label>
+                        <input type="number" id="ot200" placeholder="0" class="input-box w-full p-3 text-right" oninput="calculate()">
                     </div>
                 </div>
             </section>
 
             <!-- ALLOWANCES -->
-            <section class="premium-card p-6 border-l-4 border-l-knyGold fade-in" style="animation-delay: 0.2s">
-                <div class="flex items-center gap-3 mb-5">
-                    <div class="w-10 h-10 bg-amber-100 dark:bg-amber-900/40 rounded-xl flex items-center justify-center text-amber-600 dark:text-knyGold">
-                        <i data-lucide="gift" class="w-5 h-5"></i>
+            <section class="premium-card p-5 fade-in border-l-4 border-l-amberGold">
+                <div class="flex items-center gap-2.5 mb-4 border-b border-slate-100 dark:border-slate-700/50 pb-3">
+                    <div class="w-9 h-9 bg-amber-500/5 dark:bg-amber-500/10 rounded-lg flex items-center justify-center text-amberGold">
+                        <i data-lucide="plus-circle" class="w-4.5 h-4.5"></i>
                     </div>
-                    <h2 class="font-bold text-slate-800 dark:text-orange-50">ប្រាក់បន្ថែមផ្សេងៗ (USD)</h2>
+                    <h2 class="font-bold text-sm text-slate-700 dark:text-slate-200 uppercase tracking-wider">ប្រាក់ឧបត្ថម្ភ និងការលើកទឹកចិត្ត (USD)</h2>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="space-y-1">
-                        <label class="text-[10px] font-bold text-slate-500 dark:text-knyGold/70 ml-1 uppercase">ថ្លៃបាយ/សាំង</label>
-                        <input type="number" class="extra-income input-box w-full p-4 text-right" placeholder="0" oninput="calculate()">
+                        <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">ថ្លៃបាយ/សាំង/ស្នាក់នៅ</label>
+                        <input type="number" class="extra-income input-box w-full p-3 text-right" placeholder="0" oninput="calculate()">
                     </div>
                     <div class="space-y-1">
-                        <label class="text-[10px] font-bold text-slate-500 dark:text-knyGold/70 ml-1 uppercase">ប្រាក់រង្វាន់/Bonus</label>
-                        <input type="number" class="extra-income input-box w-full p-4 text-right" placeholder="0" oninput="calculate()">
+                        <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">ប្រាក់រង្វាន់/Bonus ផ្សេងៗ</label>
+                        <input type="number" class="extra-income input-box w-full p-3 text-right" placeholder="0" oninput="calculate()">
                     </div>
                 </div>
             </section>
 
-            <!-- DETAILED SUMMARY -->
-            <section class="premium-card p-6 border-2 border-knyGold/50 bg-gradient-to-br from-white to-orange-50/30 dark:from-darkCard dark:to-black/40 fade-in relative overflow-hidden" style="animation-delay: 0.3s">
-                <i data-lucide="coins" class="absolute -bottom-4 -right-4 w-32 h-32 text-knyGold opacity-5 pointer-events-none"></i>
-                
-                <div class="flex items-center justify-between mb-5 relative z-10">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-gradient-to-br from-knyRed to-knyDeepRed rounded-xl flex items-center justify-center text-knyGold shadow-md">
-                            <i data-lucide="clipboard-list" class="w-5 h-5"></i>
-                        </div>
-                        <h2 class="font-bold text-sm text-knyRed dark:text-knyGold">សរុបការគណនា</h2>
+            <!-- LEGAL DEDUCTIONS (NSSF & Tax) -->
+            <section class="premium-card p-5 border-l-4 border-l-rose-500 fade-in">
+                <div class="flex items-center gap-2.5 mb-4 border-b border-slate-100 dark:border-slate-700/50 pb-3">
+                    <div class="w-9 h-9 bg-rose-500/5 dark:bg-rose-500/10 rounded-lg flex items-center justify-center text-rose-500">
+                        <i data-lucide="shield-alert" class="w-4.5 h-4.5"></i>
                     </div>
-                    <button onclick="resetAll()" class="text-[10px] font-bold text-red-500 dark:text-red-400 uppercase tracking-tighter bg-red-50 dark:bg-red-900/30 px-3 py-1.5 rounded-lg active:scale-95 transition">លុបទាំងអស់</button>
+                    <h2 class="font-bold text-sm text-slate-700 dark:text-slate-200 uppercase tracking-wider">ការដកហូតតាមច្បាប់ (ប.ស.ស. & ពន្ធ)</h2>
+                </div>
+                <div class="space-y-3">
+                    <!-- NSSF Toggle -->
+                    <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/30 rounded-xl border border-slate-100 dark:border-slate-800">
+                        <div class="flex flex-col">
+                            <span class="text-xs font-bold text-slate-700 dark:text-slate-200">ភាគទាន ប.ស.ស. (NSSF)</span>
+                            <span class="text-[9px] text-slate-400">២% នៃប្រាក់បៀវត្សជាប់ភាគទាន (អតិបរមា $6)</span>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="nssfToggle" class="sr-only peer" onchange="calculate()">
+                            <div class="w-11 h-6 bg-slate-300 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-teal-600"></div>
+                        </label>
+                    </div>
+
+                    <!-- Tax Toggle -->
+                    <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/30 rounded-xl border border-slate-100 dark:border-slate-800">
+                        <div class="flex flex-col">
+                            <span class="text-xs font-bold text-slate-700 dark:text-slate-200">ពន្ធលើប្រាក់បៀវត្សរ៍ (Salary Tax)</span>
+                            <span class="text-[9px] text-slate-400">កាត់កងតាមថ្នាក់អត្រាពន្ធថ្មីនៃប្រទេសកម្ពុជា</span>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="taxToggle" class="sr-only peer" onchange="calculate()">
+                            <div class="w-11 h-6 bg-slate-300 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-teal-600"></div>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DETAILED SUMMARY STATEMENT (Pay Slip Format) -->
+            <section class="premium-card p-6 border-2 border-slate-200 dark:border-slate-700 bg-gradient-to-br from-white to-slate-50 dark:from-[#1E293B] dark:to-[#172130] fade-in relative overflow-hidden">
+                <div class="absolute -right-12 -bottom-12 w-32 h-32 bg-slate-500/5 rounded-full pointer-events-none"></div>
+                
+                <div class="flex items-center justify-between mb-4 border-b border-slate-200 dark:border-slate-700 pb-3 relative z-10">
+                    <div class="flex items-center gap-2">
+                        <div class="w-9 h-9 bg-brandPrimary rounded-xl flex items-center justify-center text-white shadow-sm">
+                            <i data-lucide="receipt" class="w-4.5 h-4.5"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-sm text-slate-800 dark:text-white">សន្លឹករបាយការណ៍ប្រាក់ខែ</h2>
+                            <p class="text-[9px] text-slate-400 uppercase tracking-widest">Pay Slip Statement</p>
+                        </div>
+                    </div>
+                    <button onclick="resetAll()" class="text-[9px] font-bold text-rose-500 bg-rose-500/10 px-3 py-1.5 rounded-lg active:scale-95 hover:bg-rose-500/20 transition-all uppercase">សម្អាតទិន្នន័យ</button>
                 </div>
 
-                <div class="space-y-1 relative z-10">
+                <div class="space-y-1 relative z-10 font-mono text-xs text-slate-600 dark:text-slate-300">
                     <div class="summary-row">
-                        <span class="text-slate-600 dark:text-slate-400 text-xs" id="summaryBaseLabel">ប្រាក់ខែគោល:</span>
+                        <span id="summaryBaseLabel">ប្រាក់ខែគោល (ធម្មតា):</span>
                         <div class="text-right">
-                            <span id="sumBaseUSD" class="font-bold text-knyRed dark:text-knyLightGold">$0.00</span>
-                            <p id="sumBaseKHR" class="text-[10px] text-orange-600 dark:text-orange-400 font-bold">0 ៛</p>
+                            <span id="sumBaseUSD" class="font-bold text-slate-900 dark:text-slate-100">$0.00</span>
+                            <p id="sumBaseKHR" class="text-[10px] text-slate-400">0 ៛</p>
                         </div>
                     </div>
                     <div class="summary-row">
-                        <span class="text-slate-600 dark:text-slate-400 text-xs">ប្រាក់ OT សរុប:</span>
+                        <span>ប្រាក់ម៉ោងបន្ថែម (OT):</span>
                         <div class="text-right">
-                            <span id="sumOTUSD" class="font-bold text-red-600 dark:text-red-400">$0.00</span>
-                            <p id="sumOTKHR" class="text-[10px] text-orange-600 dark:text-orange-400 font-bold">0 ៛</p>
+                            <span id="sumOTUSD" class="font-bold text-teal-600 dark:text-teal-400">$0.00</span>
+                            <p id="sumOTKHR" class="text-[10px] text-teal-500/80">0 ៛</p>
                         </div>
                     </div>
                     <div class="summary-row">
-                        <span class="text-slate-600 dark:text-slate-400 text-xs">ប្រាក់បន្ថែមផ្សេងៗ:</span>
+                        <span>ប្រាក់ឧបត្ថម្ភសរុប:</span>
                         <div class="text-right">
                             <span id="sumAllowUSD" class="font-bold text-amber-600 dark:text-amber-400">$0.00</span>
-                            <p id="sumAllowKHR" class="text-[10px] text-orange-600 dark:text-orange-400 font-bold">0 ៛</p>
+                            <p id="sumAllowKHR" class="text-[10px] text-amber-500/80">0 ៛</p>
                         </div>
                     </div>
-                    <div class="mt-4 pt-4 border-t-2 border-knyGold/20 flex justify-between items-start">
-                        <span class="font-bold text-knyRed dark:text-knyGold text-xs uppercase mt-2">ប្រាក់ខែសុទ្ធ:</span>
+                    <div id="nssfRow" class="summary-row hidden">
+                        <span class="text-rose-500 font-semibold">ភាគទាន ប.ស.ស. (២%):</span>
+                        <div class="text-right text-rose-500">
+                            <span id="sumNssfUSD" class="font-bold">-$0.00</span>
+                            <p id="sumNssfKHR" class="text-[10px]">0 ៛</p>
+                        </div>
+                    </div>
+                    <div id="taxRow" class="summary-row hidden">
+                        <span class="text-rose-500 font-semibold">ពន្ធលើប្រាក់បៀវត្សរ៍:</span>
+                        <div class="text-right text-rose-500">
+                            <span id="sumTaxUSD" class="font-bold">-$0.00</span>
+                            <p id="sumTaxKHR" class="text-[10px]">0 ៛</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t-2 border-dashed border-slate-300 dark:border-slate-600 flex justify-between items-start">
+                        <div class="leading-tight">
+                            <span class="font-bold text-slate-800 dark:text-white text-sm">ប្រាក់ខែទទួលបានពិតប្រាកដ</span>
+                            <p class="text-[9px] text-slate-400 uppercase">Net Pay / Take-home Salary</p>
+                        </div>
                         <div class="text-right">
-                            <span id="sumTotalUSD" class="font-title text-3xl text-knyRed dark:text-knyGold drop-shadow-sm">$0.00</span>
-                            <p id="sumTotalKHR" class="text-base text-orange-600 dark:text-orange-400 font-bold">0 ៛</p>
+                            <span id="sumTotalUSD" class="font-title text-3xl text-brandPrimary dark:text-teal-400">$0.00</span>
+                            <p id="sumTotalKHR" class="text-sm text-teal-600 dark:text-teal-400 font-bold">0 ៛</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <div class="text-center py-4">
-                <button onclick="toggleModal()" class="inline-flex items-center gap-2 bg-white dark:bg-darkCard px-6 py-4 rounded-2xl shadow-[0_4px_15px_rgba(245,158,11,0.15)] text-[11px] font-bold text-knyRed dark:text-knyGold active:scale-95 border border-knyGold/20 transition-all">
-                    <i data-lucide="gift" class="w-4 h-4 text-knyRed dark:text-knyGold"></i> ចំណងដៃ & ទំនាក់ទំនង
+                <button onclick="toggleModal()" class="inline-flex items-center gap-2 bg-white dark:bg-[#1E293B] px-6 py-4 rounded-2xl shadow-sm text-xs font-bold text-brandPrimary dark:text-teal-400 active:scale-95 border border-slate-200 dark:border-slate-700 hover:border-brandSecondary transition-all">
+                    <i data-lucide="coffee" class="w-4 h-4"></i> គាំទ្រអ្នកអភិវឌ្ឍន៍ (Support Developer)
                 </button>
             </div>
         </main>
 
         <!-- STICKY FOOTER -->
-        <div class="fixed bottom-0 left-0 right-0 p-5 bg-white/90 dark:bg-darkBg/90 backdrop-blur-xl z-40 border-t border-knyGold/20 shadow-[0_-10px_30px_rgba(190,18,60,0.1)]">
+        <div class="fixed bottom-0 left-0 right-0 p-4 bg-white/90 dark:bg-[#0F172A]/90 backdrop-blur-xl z-40 border-t border-slate-200 dark:border-slate-800 shadow-[0_-8px_30px_rgba(0,0,0,0.05)]">
             <div class="max-w-md mx-auto">
-                <div class="btn-gradient rounded-[22px] p-4 flex justify-between items-center text-white border border-white/20 relative overflow-hidden">
-                    <div class="absolute -right-4 -top-4 opacity-20">
-                        <i data-lucide="sparkles" class="w-24 h-24"></i>
+                <div class="btn-gradient rounded-[18px] p-4 flex justify-between items-center text-white border border-white/10 relative overflow-hidden">
+                    <div class="absolute -right-4 -top-4 opacity-10">
+                        <i data-lucide="trending-up" class="w-24 h-24"></i>
                     </div>
                     <div class="flex items-center gap-3 relative z-10">
-                        <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-knyGold shadow-inner">
-                            <i data-lucide="banknote" class="w-5 h-5 text-knyLightGold"></i>
+                        <div class="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center text-teal-200">
+                            <i data-lucide="credit-card" class="w-5 h-5"></i>
                         </div>
                         <div class="leading-tight">
-                            <p class="text-[10px] font-bold text-knyLightGold opacity-80 uppercase">Net Income</p>
-                            <p class="text-sm font-header text-white">ប្រាក់ខែសរុប</p>
+                            <p class="text-[9px] font-bold text-teal-200 uppercase tracking-widest">Take-Home Pay</p>
+                            <p class="text-xs font-medium text-white/95">ប្រាក់ខែត្រូវបើកសរុប</p>
                         </div>
                     </div>
                     <div class="text-right leading-none relative z-10">
-                        <span id="totalUSD" class="text-2xl font-title text-knyGold drop-shadow-md">$0.00</span>
-                        <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-knyGold/50 to-transparent my-1"></div>
-                        <span id="totalKHR" class="text-[11px] font-bold text-white">0 ៛</span>
+                        <span id="totalUSD" class="text-2xl font-title text-white">$0.00</span>
+                        <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-white/20 to-transparent my-1"></div>
+                        <span id="totalKHR" class="text-[10px] font-bold text-teal-200">0 ៛</span>
                     </div>
                 </div>
             </div>
@@ -361,93 +399,93 @@
     </div>
 
     <!-- NOTIFICATION -->
-    <div id="msg-box" class="fixed top-10 left-1/2 -translate-x-1/2 z-[200] opacity-0 pointer-events-none transition-all duration-300">
-        <div class="bg-gradient-to-r from-knyRed to-knyDeepRed text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 border border-knyGold/30">
-            <i data-lucide="check-circle-2" class="w-5 h-5 text-knyGold"></i>
-            <span id="msg-text" class="text-sm font-bold">រួចរាល់!</span>
+    <div id="msg-box" class="fixed top-8 left-1/2 -translate-x-1/2 z-[200] opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-slate-900 text-white px-5 py-3 rounded-xl shadow-xl flex items-center gap-3.5 border border-slate-700/50">
+            <i data-lucide="clipboard-check" class="w-5 h-5 text-teal-400"></i>
+            <span id="msg-text" class="text-xs font-bold">រួចរាល់!</span>
         </div>
     </div>
 
     <!-- MODAL (DONATION) -->
     <div id="contact-modal" class="fixed inset-0 z-[110] flex items-center justify-center hidden opacity-0 transition-all duration-300 px-6">
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleModal()"></div>
-        <div class="bg-[#FFF8F0] dark:bg-darkCard w-full max-w-sm rounded-[32px] overflow-hidden relative z-10 shadow-2xl flex flex-col max-h-[90vh] border border-knyGold/30">
-            <div class="bg-gradient-to-br from-knyRed to-knyDeepRed p-8 text-center relative border-b-4 border-knyGold shrink-0">
-                <button onclick="toggleModal()" class="absolute top-4 right-4 text-white/50 hover:text-white bg-black/20 rounded-full p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
-                <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-knyGold/50 shadow-[0_0_15px_rgba(245,158,11,0.3)]">
-                    <i data-lucide="party-popper" class="w-8 h-8 text-knyGold"></i>
+        <div class="bg-white dark:bg-[#1E293B] w-full max-w-sm rounded-[24px] overflow-hidden relative z-10 shadow-2xl flex flex-col max-h-[90vh] border border-slate-200 dark:border-slate-700">
+            <div class="bg-gradient-to-r from-brandPrimary to-[#115E59] p-6 text-center relative border-b border-slate-200 dark:border-slate-700 shrink-0">
+                <button onclick="toggleModal()" class="absolute top-4 right-4 text-white/50 hover:text-white bg-black/20 rounded-full p-1"><i data-lucide="x" class="w-4 h-4"></i></button>
+                <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-3 border border-white/10 shadow-inner">
+                    <i data-lucide="coffee" class="w-6 h-6 text-teal-200"></i>
                 </div>
-                <h3 class="font-header text-knyGold text-2xl drop-shadow-md">ចំណងដៃឆ្នាំថ្មី</h3>
-                <p class="text-white/80 text-[10px] font-sans tracking-[0.1em] mt-1">ជូនពរហេងៗ 💰</p>
+                <h3 class="font-bold text-white text-lg">ឧបត្ថម្ភការអភិវឌ្ឍ (Support)</h3>
+                <p class="text-teal-100 text-[10px] font-light mt-0.5">ការលើកទឹកចិត្តជួយឱ្យមានស្នាដៃកាន់តែល្អ ☕️</p>
             </div>
-            <div class="p-6 space-y-4 overflow-y-auto">
-                <div class="space-y-3">
-                    <p class="text-[10px] font-bold text-slate-500 dark:text-knyGold/70 uppercase ml-1">ជម្រើសធនាគារ</p>
+            <div class="p-5 space-y-4 overflow-y-auto">
+                <div class="space-y-2.5">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider ml-1">គណនីធនាគារ</p>
                     
                     <!-- ABA -->
-                    <a href="https://pay.ababank.com/oRF8/bjr6yndk" target="_blank" class="flex items-center justify-between p-3 bg-white dark:bg-black/20 rounded-2xl border border-knyGold/20 shadow-sm group active:scale-95 transition">
+                    <a href="https://pay.ababank.com/oRF8/bjr6yndk" target="_blank" class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200/50 dark:border-slate-800 shadow-sm hover:border-brandSecondary transition">
                         <div class="flex items-center gap-3">
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScTSiO0sgilmoq82Yce4JRG7prnLsc3XDq-nPwZDT1Zw&s=10" alt="ABA Logo" class="bank-logo">
                             <div>
-                                <p class="text-xs font-bold text-slate-800 dark:text-orange-50">ABA Bank</p>
-                                <p class="text-[9px] text-slate-500">គណនី: USD នឹង រៀល</p>
+                                <p class="text-xs font-bold text-slate-800 dark:text-slate-200">ABA Bank</p>
+                                <p class="text-[9px] text-slate-400">គណនី៖ USD & KHR</p>
                             </div>
                         </div>
-                        <i data-lucide="chevron-right" class="w-4 h-4 text-knyRed dark:text-knyGold"></i>
+                        <i data-lucide="external-link" class="w-4 h-4 text-brandPrimary"></i>
                     </a>
 
                     <!-- ACLEDA -->
-                    <a href="https://acledabank.com.kh/acleda?payment_data=qWY5B2SAUfIhLblxzOtfu5ckLzMHjaSki6Ru0bsOyNK+ylPBgZ0sHH6BeGUscKoEran8y74FGrnSdiKqbAxfzV71sxWKK0pKj/RYS1lETFwk5f6KW2DN1hgb4duxAou4S553piaPpwzqZKuhkKyotwROYt/tmB/XpmB/w3GEriOBxyJcvzjfsguYDI3DQXMlxwEd8oFPWX+nJpSwPRJyJ627h7JIz+AnP/gOunDWsZbuQ/1BcMwOAF9pYgWqTkiDFqzVU696ew2/no7+R8OMmw==&key=khqr" target="_blank" class="flex items-center justify-between p-3 bg-white dark:bg-black/20 rounded-2xl border border-knyGold/20 shadow-sm group active:scale-95 transition">
+                    <a href="https://acledabank.com.kh/acleda?payment_data=qWY5B2SAUfIhLblxzOtfu5ckLzMHjaSki6Ru0bsOyNK+ylPBgZ0sHH6BeGUscKoEran8y74FGrnSdiKqbAxfzV71sxWKK0pKj/RYS1lETFwk5f6KW2DN1hgb4duxAou4S553piaPpwzqZKuhkKyotwROYt/tmB/XpmB/w3GEriOBxyJcvzjfsguYDI3DQXMlxwEd8oFPWX+nJpSwPRJyJ627h7JIz+AnP/gOunDWsZbuQ/1BcMwOAF9pYgWqTkiDFqzVU696ew2/no7+R8OMmw==&key=khqr" target="_blank" class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200/50 dark:border-slate-800 shadow-sm hover:border-brandSecondary transition">
                         <div class="flex items-center gap-3">
                             <img src="https://cccbic.org/businesses/430-logo.jpg" alt="ACLEDA Logo" class="bank-logo">
                             <div>
-                                <p class="text-xs font-bold text-slate-800 dark:text-orange-50">ACLEDA Bank</p>
-                                <p class="text-[9px] text-slate-500">គណនី: USD នឹង រៀល</p>
+                                <p class="text-xs font-bold text-slate-800 dark:text-slate-200">ACLEDA Bank</p>
+                                <p class="text-[9px] text-slate-400">គណនី៖ USD & KHR</p>
                             </div>
                         </div>
-                        <i data-lucide="chevron-right" class="w-4 h-4 text-knyRed dark:text-knyGold"></i>
+                        <i data-lucide="external-link" class="w-4 h-4 text-brandPrimary"></i>
                     </a>
 
                     <!-- Wing -->
-                    <a href="https://wingmoney.app.link/FenLETPGC0b" target="_blank" class="flex items-center justify-between p-3 bg-white dark:bg-black/20 rounded-2xl border border-knyGold/20 shadow-sm group active:scale-95 transition">
+                    <a href="https://wingmoney.app.link/FenLETPGC0b" target="_blank" class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200/50 dark:border-slate-800 shadow-sm hover:border-brandSecondary transition">
                         <div class="flex items-center gap-3">
                             <img src="https://play-lh.googleusercontent.com/A8bangMCdTPS1Xa9hbuc4pcXxUspKpJhDHWW3QSw3OB-VMtUv6NCnqAd7pUv2C-2OnjJHn0Xmv1cs6c2hFUZMw" alt="Wing Logo" class="bank-logo">
                             <div>
-                                <p class="text-xs font-bold text-slate-800 dark:text-orange-50">Wing Bank</p>
-                                <p class="text-[9px] text-slate-500">គណនី: USD នឹង រៀល</p>
+                                <p class="text-xs font-bold text-slate-800 dark:text-slate-200">Wing Bank</p>
+                                <p class="text-[9px] text-slate-400">គណនី៖ USD & KHR</p>
                             </div>
                         </div>
-                        <i data-lucide="chevron-right" class="w-4 h-4 text-knyRed dark:text-knyGold"></i>
+                        <i data-lucide="external-link" class="w-4 h-4 text-brandPrimary"></i>
                     </a>
                 </div>
 
-                <div class="pt-4 border-t border-knyGold/20">
-                    <p class="text-[10px] font-bold text-slate-500 dark:text-knyGold/70 uppercase ml-1 mb-3">បណ្ដាញសង្គម</p>
+                <div class="pt-3 border-t border-slate-200 dark:border-slate-800">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider ml-1 mb-2.5">ទំនាក់ទំនងម្ចាស់ស្នាដៃ</p>
                     <div class="grid grid-cols-4 gap-2">
                         <!-- Telegram -->
-                        <a href="https://t.me/hunsamnang" target="_blank" class="flex flex-col items-center gap-1 group">
-                            <div class="w-10 h-10 rounded-2xl bg-sky-50 dark:bg-sky-900/20 flex items-center justify-center group-active:scale-90 transition shadow-sm border border-sky-100 dark:border-sky-800"><i data-lucide="send" class="w-4 h-4 text-sky-500"></i></div>
-                            <span class="text-[8px] font-bold uppercase text-slate-600 dark:text-slate-400">Telegram</span>
+                        <a href="https://t.me/hunsamnang" target="_blank" class="flex flex-col items-center gap-1.5 group">
+                            <div class="w-10 h-10 rounded-xl bg-sky-50 dark:bg-sky-950/30 flex items-center justify-center group-active:scale-90 transition border border-sky-100 dark:border-sky-900/10"><i data-lucide="send" class="w-4 h-4 text-sky-500"></i></div>
+                            <span class="text-[8px] font-bold uppercase text-slate-500">Telegram</span>
                         </a>
                         <!-- Facebook -->
-                        <a href="https://www.facebook.com/samnanghunreal/" target="_blank" class="flex flex-col items-center gap-1 group">
-                            <div class="w-10 h-10 rounded-2xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center group-active:scale-90 transition shadow-sm border border-blue-100 dark:border-blue-800"><i data-lucide="facebook" class="w-4 h-4 text-blue-600"></i></div>
-                            <span class="text-[8px] font-bold uppercase text-slate-600 dark:text-slate-400">Facebook</span>
+                        <a href="https://www.facebook.com/samnanghunreal/" target="_blank" class="flex flex-col items-center gap-1.5 group">
+                            <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/30 flex items-center justify-center group-active:scale-90 transition border border-blue-100 dark:border-blue-900/10"><i data-lucide="facebook" class="w-4 h-4 text-blue-600"></i></div>
+                            <span class="text-[8px] font-bold uppercase text-slate-500">Facebook</span>
                         </a>
                         <!-- WhatsApp -->
-                        <a href="https://wa.me/qr/H35HQISESRRLB1" target="_blank" class="flex flex-col items-center gap-1 group">
-                            <div class="w-10 h-10 rounded-2xl bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center group-active:scale-90 transition shadow-sm border border-emerald-100 dark:border-emerald-800"><i data-lucide="phone" class="w-4 h-4 text-emerald-500"></i></div>
-                            <span class="text-[8px] font-bold uppercase text-slate-600 dark:text-slate-400">WhatsApp</span>
+                        <a href="https://wa.me/qr/H35HQISESRRLB1" target="_blank" class="flex flex-col items-center gap-1.5 group">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 flex items-center justify-center group-active:scale-90 transition border border-emerald-100 dark:border-emerald-900/10"><i data-lucide="phone" class="w-4 h-4 text-emerald-500"></i></div>
+                            <span class="text-[8px] font-bold uppercase text-slate-500">WhatsApp</span>
                         </a>
                         <!-- WeChat -->
-                        <a href="https://u.wechat.com/kBVl6zaWxOSCqiHsDatJx7A?s=2" target="_blank" class="flex flex-col items-center gap-1 group">
-                            <div class="w-10 h-10 rounded-2xl bg-green-50 dark:bg-green-900/20 flex items-center justify-center group-active:scale-90 transition shadow-sm border border-green-100 dark:border-green-800"><i data-lucide="message-circle" class="w-4 h-4 text-green-600"></i></div>
-                            <span class="text-[8px] font-bold uppercase text-slate-600 dark:text-slate-400">WeChat</span>
+                        <a href="https://u.wechat.com/kBVl6zaWxOSCqiHsDatJx7A?s=2" target="_blank" class="flex flex-col items-center gap-1.5 group">
+                            <div class="w-10 h-10 rounded-xl bg-green-50 dark:bg-green-950/30 flex items-center justify-center group-active:scale-90 transition border border-green-100 dark:border-green-900/10"><i data-lucide="message-circle" class="w-4 h-4 text-green-600"></i></div>
+                            <span class="text-[8px] font-bold uppercase text-slate-500">WeChat</span>
                         </a>
                     </div>
                 </div>
-                <div class="pt-4 pb-2 text-center">
-                    <p class="text-[9px] text-knyRed/70 dark:text-knyGold/50 font-bold">🌸 អរគុណសម្រាប់ការគាំទ្រស្នាដៃខ្មែរ! 🌸</p>
+                <div class="pt-3 pb-1 text-center border-t border-slate-100 dark:border-slate-800">
+                    <p class="text-[9px] text-slate-400 font-bold">🌸 អរគុណសម្រាប់ការគាំទ្រស្នាដៃខ្មែរ! 🌸</p>
                 </div>
             </div>
         </div>
@@ -456,7 +494,7 @@
     <script>
         lucide.createIcons();
 
-        let salaryData = { totalUSD: 0, totalKHR: 0, rate: 4100, earnedBaseUSD: 0, actualDays: 26 };
+        let salaryData = { totalUSD: 0, totalKHR: 0, rate: 4100, earnedBaseUSD: 0, actualDays: 26, taxUSD: 0, nssfUSD: 0 };
 
         window.onload = function() {
             calculate();
@@ -469,11 +507,11 @@
             if (html.classList.contains('dark')) {
                 html.classList.remove('dark');
                 html.classList.add('light');
-                btn.innerHTML = '<i data-lucide="moon" class="w-5 h-5"></i>';
+                btn.innerHTML = '<i data-lucide="moon" class="w-4.5 h-4.5 text-white"></i>';
             } else {
                 html.classList.remove('light');
                 html.classList.add('dark');
-                btn.innerHTML = '<i data-lucide="sun" class="w-5 h-5 text-knyGold"></i>';
+                btn.innerHTML = '<i data-lucide="sun" class="w-4.5 h-4.5 text-amber-400"></i>';
             }
             lucide.createIcons();
         }
@@ -483,10 +521,6 @@
             document.getElementById('msg-text').innerText = text;
             box.classList.remove('opacity-0', 'pointer-events-none');
             box.classList.add('opacity-100', 'animate-slide-down');
-            
-            if(text.includes('រួចរាល់')) {
-                confetti({ particleCount: 40, spread: 50, origin: { y: 0.2 }, zIndex: 300, colors: ['#F59E0B', '#BE123C']});
-            }
 
             setTimeout(() => {
                 box.classList.remove('opacity-100', 'animate-slide-down');
@@ -511,6 +545,23 @@
 
         function formatKHR(val) {
             return Math.round(val).toLocaleString('en-US') + ' ៛';
+        }
+
+        // Cambodian progressive salary tax table rules
+        function calculateCambodianTax(taxableSalaryKHR) {
+            let tax = 0;
+            if (taxableSalaryKHR <= 1500000) {
+                tax = 0;
+            } else if (taxableSalaryKHR <= 2000000) {
+                tax = (taxableSalaryKHR * 0.05) - 75000;
+            } else if (taxableSalaryKHR <= 8500000) {
+                tax = (taxableSalaryKHR * 0.10) - 175000;
+            } else if (taxableSalaryKHR <= 12500000) {
+                tax = (taxableSalaryKHR * 0.15) - 600000;
+            } else {
+                tax = (taxableSalaryKHR * 0.20) - 1225000;
+            }
+            return Math.max(0, tax);
         }
 
         function calculate() {
@@ -541,10 +592,35 @@
             });
 
             const otUSD = (ot150h * r150USD) + (ot200h * r200USD);
-            const totalUSD = earnedBaseUSD + otUSD + extraUSD; 
+            
+            // Deductions Logic
+            let nssfUSD = 0;
+            if (document.getElementById('nssfToggle').checked) {
+                // NSSF is 2% capped at wage threshold of 1,200,000 KHR (~ $300) -> Max contribution approx $6 USD
+                const nssfCapBase = Math.min(baseUSD, 300);
+                nssfUSD = nssfCapBase * 0.02;
+                document.getElementById('nssfRow').classList.remove('hidden');
+            } else {
+                document.getElementById('nssfRow').classList.add('hidden');
+            }
+
+            // Salary Tax Logic
+            let taxUSD = 0;
+            const subtotalBeforeTaxUSD = earnedBaseUSD + otUSD + extraUSD - nssfUSD;
+            const subtotalBeforeTaxKHR = subtotalBeforeTaxUSD * rate;
+
+            if (document.getElementById('taxToggle').checked) {
+                const taxKHR = calculateCambodianTax(subtotalBeforeTaxKHR);
+                taxUSD = taxKHR / rate;
+                document.getElementById('taxRow').classList.remove('hidden');
+            } else {
+                document.getElementById('taxRow').classList.add('hidden');
+            }
+
+            const totalUSD = subtotalBeforeTaxUSD - taxUSD; 
             const totalKHR = totalUSD * rate;
 
-            salaryData = { baseUSD, earnedBaseUSD, otUSD, extraUSD, totalUSD, totalKHR, rate, actualDays, daysInMonth };
+            salaryData = { baseUSD, earnedBaseUSD, otUSD, extraUSD, nssfUSD, taxUSD, totalUSD, totalKHR, rate, actualDays, daysInMonth };
 
             const usdFormat = { minimumFractionDigits: 2, maximumFractionDigits: 2 };
             
@@ -557,6 +633,12 @@
             document.getElementById('sumAllowUSD').innerText = '$' + extraUSD.toLocaleString('en-US', usdFormat);
             document.getElementById('sumAllowKHR').innerText = formatKHR(extraUSD * rate);
             
+            // Set NSSF & Tax displays
+            document.getElementById('sumNssfUSD').innerText = '-$' + nssfUSD.toLocaleString('en-US', usdFormat);
+            document.getElementById('sumNssfKHR').innerText = formatKHR(nssfUSD * rate);
+            document.getElementById('sumTaxUSD').innerText = '-$' + taxUSD.toLocaleString('en-US', usdFormat);
+            document.getElementById('sumTaxKHR').innerText = formatKHR(taxUSD * rate);
+
             document.getElementById('sumTotalUSD').innerText = '$' + totalUSD.toLocaleString('en-US', usdFormat);
             document.getElementById('sumTotalKHR').innerText = formatKHR(totalKHR);
             document.getElementById('totalUSD').innerText = '$' + totalUSD.toLocaleString('en-US', usdFormat);
@@ -564,30 +646,33 @@
         }
 
         function resetAll() {
-            document.querySelectorAll('input').forEach(i => {
+            document.querySelectorAll('input[type="number"]').forEach(i => {
                 if(i.id === 'workDays') i.value = 26;
                 else if(i.id === 'actualDays') i.value = 26; 
                 else if(i.id === 'workHours') i.value = 8;
                 else if(i.id === 'exchangeRate') i.value = 4100;
-                else if(i.id === 'baseSalary') i.value = 208;
+                else if(i.id === 'baseSalary') i.value = 250;
                 else i.value = '';
             });
+            document.getElementById('nssfToggle').checked = false;
+            document.getElementById('taxToggle').checked = false;
             calculate();
             showMessage("ទិន្នន័យត្រូវបានសម្អាត");
         }
 
         function copyToClipboard() {
             const report = `
-🌸 របាយការណ៍ប្រាក់ខែ (KNY Edition) 🌸
-------------------------------
-💵 ប្រាក់ខែគោល ($${salaryData.baseUSD}): $${salaryData.earnedBaseUSD.toFixed(2)} (ធ្វើការ ${salaryData.actualDays}/${salaryData.daysInMonth}ថ្ងៃ)
+📊 របាយការណ៍ប្រាក់បៀវត្សរ៍ (Smart Payroll KH) 📊
+----------------------------------
+💵 ប្រាក់ខែគោល: $${salaryData.baseUSD}
+🗓️ ថ្ងៃធ្វើការជាក់ស្តែង: ${salaryData.actualDays}/${salaryData.daysInMonth} ថ្ងៃ -> ទទួលបាន: $${salaryData.earnedBaseUSD.toFixed(2)}
 🕒 ប្រាក់ OT: $${salaryData.otUSD.toFixed(2)} (${formatKHR(salaryData.otUSD * salaryData.rate)})
-🎁 ប្រាក់បន្ថែម: $${salaryData.extraUSD.toFixed(2)} (${formatKHR(salaryData.extraUSD * salaryData.rate)})
-------------------------------
-💰 សរុបសុទ្ធ: $${salaryData.totalUSD.toFixed(2)}
-🇰🇭 ជាប្រាក់រៀល: ${formatKHR(salaryData.totalKHR)}
-(អត្រាប្តូរប្រាក់: 1$ = ${salaryData.rate}៛)
-✨ សួស្ដីឆ្នាំថ្មី ប្រកបដោយសិរីសួស្ដី! ✨
+🎁 ប្រាក់ឧបត្ថម្ភផ្សេងៗ: $${salaryData.extraUSD.toFixed(2)} (${formatKHR(salaryData.extraUSD * salaryData.rate)})
+----------------------------------
+${salaryData.nssfUSD > 0 ? `🛡️ ភាគទាន ប.ស.ស.: -$${salaryData.nssfUSD.toFixed(2)} (${formatKHR(salaryData.nssfUSD * salaryData.rate)})\n` : ''}${salaryData.taxUSD > 0 ? `📉 ពន្ធដកហូត: -$${salaryData.taxUSD.toFixed(2)} (${formatKHR(salaryData.taxUSD * salaryData.rate)})\n` : ''}----------------------------------
+💰 ប្រាក់ខែទទួលបានសរុប (Net Pay): $${salaryData.totalUSD.toFixed(2)}
+🇰🇭 ជាប្រាក់រៀលសរុប: ${formatKHR(salaryData.totalKHR)}
+(គណនាតាមអត្រាការប្រាក់៖ 1$ = ${salaryData.rate}៛)
             `;
             
             const textArea = document.createElement("textarea");
@@ -606,4 +691,4 @@
 </body>
 </html>
 
-
+```
